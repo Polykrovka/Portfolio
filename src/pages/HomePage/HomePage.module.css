@@ -1,0 +1,109 @@
+.wrapper {
+    min-height: calc((100vh - 92.8px) - 84px - 120px); 
+    /* 100vh - header - footer - margins */
+}
+
+.sectionTitle {
+    font-family: 'Montserrat', sans-serif;
+    font-size: rem(56px);
+    font-weight: 700;
+    margin-bottom: 40px;
+    text-align: center;
+    color: light-dark(#0F172A, var(--mantine-color-white));
+
+    @media (max-width: $mantine-breakpoint-md) {
+        font-size: rem(36px);
+    }
+}
+
+.widthWrapper {
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+.contactContainer {
+    padding: 0px 20px 40px;
+    max-width: 900px;
+
+    @media (max-width: $mantine-breakpoint-sm) {
+        padding: 0px 0px 40px;
+    }
+}
+
+.contactSection {
+  margin-bottom: 48px;
+}
+
+.contactTitle {
+    font-family: 'Montserrat', sans-serif;
+    font-size: rem(36px);
+    font-weight: 600;
+    margin-bottom: 16px;
+    text-align: center;
+    color: light-dark(#0F172A, var(--mantine-color-white));
+}
+
+.dataSection {
+    margin-bottom: 0;
+}
+
+.subtitle {
+    font-family: 'Montserrat', sans-serif;
+    font-size: rem(28px);
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: light-dark(#0F172A, #60A5FA);
+}
+
+.text {
+    font-family: 'Inter', sans-serif;
+    font-size: rem(16px);
+    line-height: 1.8;
+    margin-bottom: 12px;
+
+    @media (max-width: $mantine-breakpoint-sm) {
+        padding: 0 20px;
+    }
+}
+
+.contactInfo {
+    padding: 24px;
+    background-color: light-dark(#E5E7EB, var(--mantine-color-dark-6));
+    border-radius: 8px;
+    border: 1px solid light-dark(#E5E7EB, var(--mantine-color-dark-4));
+}
+
+[data-mantine-color-scheme='dark'] .contactInfo {
+    background-color: var(--mantine-color-dark-6);
+    border-color: var(--mantine-color-dark-4);
+}
+
+.contactDetail {
+    margin-bottom: 8px;
+    line-height: 1.6;
+}
+
+.contactLink {
+    color: #60A5FA;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+
+    &:hover {
+        color: #3B82F6;
+        text-decoration: underline;
+    }
+}
+
+.mobileLinkContainer {
+    margin-top: 2rem;
+    padding: 0 20px;
+}
+
+.mobileLink {
+    color: white;
+    text-decoration: underline;
+    font-weight: 600;
+    font-size: 20px;
+    font-family: 'Montserrat', sans-serif;
+}
