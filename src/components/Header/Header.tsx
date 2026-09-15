@@ -1,5 +1,6 @@
 import { Anchor, Box, Burger, Container, Group, Text, Drawer, Stack } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
+import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'react-router-dom';
 import { ColorSchemeToggle } from '../ColorSchemeToggle/ColorSchemeToggle';
 import { LanguageSelect } from '../LanguageSelect/LanguageSelect';
@@ -9,16 +10,17 @@ import classes from './Header.module.css';
 const userLinks: { link: string; label: string }[] = [];
 
 export function Header() {
+  const { t } = useTranslation();
   const [opened, { toggle }] = useDisclosure(false);
   const location = useLocation();
   // const { properties } = useProperties();
 
   const mainLinks = [
-    { link: '/', label: 'Main Page' },
-    { link: '/front', label: 'Frontend' },
-    { link: '/game-dev', label: 'Game development' },
-    { link: '/contact', label: 'Contact' },
-    { link: '/personal-info', label: 'Personal info' },
+    { link: '/', labelKey: 'header.mainPage' },
+    { link: '/front', labelKey: 'header.frontend' },
+    { link: '/game-dev', labelKey: 'header.gameDev' },
+    { link: '/contact', labelKey: 'header.contact' },
+    { link: '/personal-info', labelKey: 'header.personalInfo' },
   ];
 
   const isActive = (link: string) => {
@@ -42,18 +44,19 @@ export function Header() {
 
   const mainItems = mainLinks.map((item) => {
     const isLink = item.link.startsWith('/');
+    const label = t(item.labelKey);
     
     if (isLink) {
       return (
         <Anchor
           component={Link}
           to={item.link}
-          key={item.label}
+          key={item.link}
           className={classes.mainLink}
           data-active={isActive(item.link) || undefined}
           onClick={() => window.scrollTo(0, 0)}
         >
-          {item.label}
+          {label}
         </Anchor>
       );
     }
@@ -61,12 +64,12 @@ export function Header() {
     return (
       <Anchor
         href={item.link}
-        key={item.label}
+        key={item.link}
         className={classes.mainLink}
         data-active={isActive(item.link) || undefined}
         onClick={(event) => event.preventDefault()}
       >
-        {item.label}
+        {label}
       </Anchor>
     );
   });
@@ -111,7 +114,7 @@ export function Header() {
       <Container className={classes.inner}>
         <Anchor component={Link} to="/" style={{ textDecoration: 'none' }} onClick={() => window.scrollTo(0, 0)}>
           <Text size="xl" fw={700} className={classes.logoText}>
-            AW Development
+            {t('header.logo')}
           </Text>
         </Anchor>
         <Box className={classes.links} visibleFrom="sm">
@@ -132,7 +135,7 @@ export function Header() {
       <Drawer
         opened={opened}
         onClose={toggle}
-        title={<Text fw={700} size="lg" style={{ fontFamily: 'Montserrat, sans-serif' }}>Menu</Text>}
+        title={<Text fw={700} size="lg" style={{ fontFamily: 'Montserrat, sans-serif' }}>{t('header.menu')}</Text>}
         size="sm"
         hiddenFrom="sm"
       >

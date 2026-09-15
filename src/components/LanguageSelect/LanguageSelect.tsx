@@ -1,16 +1,20 @@
 import { Button, Menu } from '@mantine/core';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import classes from './LanguageSelect.module.css';
 
 const languages = [
   { code: 'en', label: 'EN' },
   { code: 'ru', label: 'RU' },
+  { code: 'ua', label: 'UA' },
+  { code: 'by', label: 'BY' },
   { code: 'pl', label: 'PL' },
 ] as const;
 
 type LanguageCode = (typeof languages)[number]['code'];
 
 export function LanguageSelect() {
+  const { i18n } = useTranslation();
   const [language, setLanguage] = useState<LanguageCode>('en');
   const current = languages.find((item) => item.code === language) ?? languages[0];
 
@@ -27,7 +31,10 @@ export function LanguageSelect() {
           <Menu.Item
             key={item.code}
             className={`${classes.item} ${item.code === language ? classes.active : ''}`}
-            onClick={() => setLanguage(item.code)}
+            onClick={() => {
+              setLanguage(item.code);
+              void i18n.changeLanguage(item.code);
+            }}
           >
             {item.label}
           </Menu.Item>

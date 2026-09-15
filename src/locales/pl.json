@@ -1,0 +1,11 @@
+{
+  "header": {
+    "logo": "Anton Nedvedz Portfolio",
+    "menu": "Menu",
+    "mainPage": "Strona główna",
+    "frontend": "Frontend",
+    "gameDev": "Game Dev",
+    "contact": "Kontakt",
+    "personalInfo": "Informacje osobiste"
+  }
+}
