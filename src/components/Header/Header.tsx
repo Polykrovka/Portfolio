@@ -2,6 +2,7 @@ import { Anchor, Box, Burger, Container, Group, Text, Drawer, Stack } from '@man
 import { useDisclosure } from '@mantine/hooks';
 import { Link, useLocation } from 'react-router-dom';
 import { ColorSchemeToggle } from '../ColorSchemeToggle/ColorSchemeToggle';
+import { LanguageSelect } from '../LanguageSelect/LanguageSelect';
 // import { useProperties } from '../../hooks/useProperties';
 import classes from './Header.module.css';
 
@@ -99,7 +100,11 @@ export function Header() {
     );
   });
 
-  const allSecondaryItems = [...secondaryItems, <ColorSchemeToggle key="color-scheme-toggle" />];
+  const allSecondaryItems = [
+    ...secondaryItems,
+    <LanguageSelect key="language-select" />,
+    <ColorSchemeToggle key="color-scheme-toggle" />,
+  ];
 
   return (
     <header className={classes.header}>
@@ -133,6 +138,7 @@ export function Header() {
       >
         <Stack gap="md">
           {mainItems}
+          <LanguageSelect />
           <ColorSchemeToggle />
         </Stack>
       </Drawer>
