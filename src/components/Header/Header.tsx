@@ -13,40 +13,33 @@ export function Header() {
   // const { properties } = useProperties();
 
   const mainLinks = [
-    { link: '/', label: 'Strona główna' },
-    { link: '/oferta', label: 'Oferty' },
-    { link: '/zrealizowane-oferty', label: 'Zrealizowane oferty' },
-    { link: '/kontakt', label: 'Kontakt' },
-    { link: '/polityka-prywatnosci', label: 'Polityka prywatności' },
+    { link: '/', label: 'Main Page' },
+    { link: '/front', label: 'Frontend' },
+    { link: '/game-dev', label: 'Game development' },
+    { link: '/contact', label: 'Contact' },
+    { link: '/personal-info', label: 'Personal info' },
   ];
 
   const isActive = (link: string) => {
     if (link === '/') {
       return location.pathname === '/';
     }
-    if (link.startsWith('/oferta')) {
-      return location.pathname.startsWith('/oferta');
+    if (link.startsWith('/front')) {
+      return location.pathname.startsWith('/front');
     }
-    if (link.startsWith('/zrealizowane-oferty')) {
-      return location.pathname.startsWith('/zrealizowane-oferty');
+    if (link.startsWith('/game-dev')) {
+      return location.pathname.startsWith('/game-dev');
     }
-    if (link.startsWith('/kontakt')) {
-      return location.pathname.startsWith('/kontakt');
+    if (link.startsWith('/contact')) {
+      return location.pathname.startsWith('/contact');
     }
-    if (link.startsWith('/polityka-prywatnosci')) {
-      return location.pathname.startsWith('/polityka-prywatnosci');
+    if (link.startsWith('/personal-info')) {
+      return location.pathname.startsWith('/personal-info');
     }
     return false;
   };
 
-  const mainItems = mainLinks
-    .filter(
-      (item) =>
-        item.link !== '/zrealizowane-oferty' ||
-        // properties.some((property) => property.isSold && property.isAvailable)
-        true
-    )
-    .map((item) => {
+  const mainItems = mainLinks.map((item) => {
     const isLink = item.link.startsWith('/');
     
     if (isLink) {
