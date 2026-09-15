@@ -7,5 +7,10 @@
     "gameDev": "Game Dev",
     "contact": "Контакти",
     "personalInfo": "Персональна інформація"
+  },
+  "footer": {
+    "navigation": "Навігація",
+    "description": "My professional portfolio of real projects — look through my work before we talk",
+    "rights": "Усі права захищено."
   }
 }

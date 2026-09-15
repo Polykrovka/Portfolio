@@ -1,0 +1,120 @@
+.footer {
+  padding-top: calc(var(--mantine-spacing-xl) * 2);
+  padding-bottom: var(--mantine-spacing-xl);
+  background-color: light-dark(#E5E7EB, var(--mantine-color-dark-6));
+  border-top: 1px solid light-dark(#E5E7EB, var(--mantine-color-dark-5));
+}
+
+.inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: var(--mantine-spacing-xl);
+  border-bottom: 1px solid light-dark(rgba(15, 23, 42, 0.1), var(--mantine-color-dark-5));
+
+  @media (max-width: $mantine-breakpoint-sm) {
+    flex-direction: column;
+  }
+}
+
+.groups {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 60px;
+
+  @media (max-width: $mantine-breakpoint-sm) {
+    gap: 30px;
+    margin-top: 30px;
+  }
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: var(--mantine-font-size-sm);
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  color: light-dark(#0F172A, var(--mantine-color-white));
+}
+
+.link {
+  font-family: 'Inter', sans-serif;
+  display: block;
+  color: light-dark(rgba(15, 23, 42, 0.7), var(--mantine-color-dark-1));
+  font-size: var(--mantine-font-size-sm);
+  padding: 3px 0;
+  text-decoration: none;
+  transition: color 0.2s;
+
+  @mixin hover {
+    color: light-dark(#0F172A, var(--mantine-color-white));
+  }
+}
+
+.logo {
+  max-width: 500px;
+
+  @media (max-width: $mantine-breakpoint-sm) {
+    max-width: 100%;
+  }
+}
+
+.logoText {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  color: light-dark(#0F172A, var(--mantine-color-white));
+  margin-bottom: 8px;
+}
+
+.description {
+  font-family: 'Inter', sans-serif;
+  margin-top: 8px;
+  max-width: 280px;
+  line-height: 1.6;
+}
+
+.contactsWrapper {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.contactText {
+  font-family: 'Inter', sans-serif;
+  color: light-dark(rgba(15, 23, 42, 0.7), var(--mantine-color-dark-1));
+  font-size: var(--mantine-font-size-sm);
+  line-height: 1.6;
+  margin-bottom: 4px;
+}
+
+.contactLink {
+  font-family: 'Inter', sans-serif;
+  display: inline;
+  color: light-dark(rgba(15, 23, 42, 0.7), var(--mantine-color-dark-1));
+  font-size: var(--mantine-font-size-sm);
+  text-decoration: none;
+  transition: color 0.2s;
+
+  @mixin hover {
+    color: light-dark(#0F172A, var(--mantine-color-white));
+  }
+}
+
+.afterFooter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: var(--mantine-spacing-xl);
+
+  @media (max-width: $mantine-breakpoint-sm) {
+    flex-direction: column;
+    text-align: center;
+  }
+}

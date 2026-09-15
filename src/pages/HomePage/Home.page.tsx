@@ -4,7 +4,7 @@ import { useMediaQuery } from '@mantine/hooks';
 // import { AboutUs } from '../../components/AboutUs/AboutUs';
 // import { CardsCarousel } from '../../components/CardsCarousel/CardsCarousel';
 // import { ContactForm } from '../../components/ContactForm/ContactForm';
-// import { Footer } from '../../components/Footer/Footer';
+import { Footer } from '../../components/Footer/Footer';
 import { Header } from '../../components/Header/Header';
 // import { Welcome } from '../../components/Welcome/Welcome';
 // import { useHomepage } from '../../hooks/useHomepage';
@@ -54,7 +54,8 @@ export function HomePage() {
           </section>
         </Container>
       </div>
-      <Footer /> */}
+      */}
+      <Footer />
     </>
   );
 }

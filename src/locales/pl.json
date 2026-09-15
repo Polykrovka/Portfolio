@@ -7,5 +7,10 @@
     "gameDev": "Game Dev",
     "contact": "Kontakt",
     "personalInfo": "Informacje osobiste"
+  },
+  "footer": {
+    "navigation": "Nawigacja",
+    "description": "My professional portfolio of real projects — look through my work before we talk",
+    "rights": "Wszelkie prawa zastrzeżone."
   }
 }

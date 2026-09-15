@@ -7,5 +7,10 @@
     "gameDev": "Game Dev",
     "contact": "Кантакты",
     "personalInfo": "Персанальная інфармацыя"
+  },
+  "footer": {
+    "navigation": "Навігацыя",
+    "description": "My professional portfolio of real projects — look through my work before we talk",
+    "rights": "Усе правы абаронены."
   }
 }
