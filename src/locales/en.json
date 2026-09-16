@@ -12,5 +12,9 @@
     "navigation": "Navigation",
     "description": "My professional portfolio of real projects — look through my work before we talk",
     "rights": "All rights reserved."
+  },
+  "welcome": {
+    "title": "Anton Nedvedz Portfolio",
+    "description": "My professional portfolio of real projects — look through my work before we talk"
   }
 }

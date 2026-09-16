@@ -6,7 +6,7 @@ import { useMediaQuery } from '@mantine/hooks';
 // import { ContactForm } from '../../components/ContactForm/ContactForm';
 import { Footer } from '../../components/Footer/Footer';
 import { Header } from '../../components/Header/Header';
-// import { Welcome } from '../../components/Welcome/Welcome';
+import { Welcome } from '../../components/Welcome/Welcome';
 // import { useHomepage } from '../../hooks/useHomepage';
 import classes from './HomePage.module.css';
 
@@ -17,9 +17,10 @@ export function HomePage() {
   return (
     <>
     <Header />
-      {/* <Header />
       <div className={classes.wrapper}>
         <Welcome />
+      {/* 
+      
         <div className={classes.widthWrapper}>
           <Title order={2} mt={60} mb={40} className={classes.sectionTitle}>
             {homepageData?.offersTitle || 'Nasze oferty'}
@@ -55,6 +56,7 @@ export function HomePage() {
         </Container>
       </div>
       */}
+      </div>
       <Footer />
     </>
   );

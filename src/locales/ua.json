@@ -12,5 +12,9 @@
     "navigation": "Навігація",
     "description": "My professional portfolio of real projects — look through my work before we talk",
     "rights": "Усі права захищено."
+  },
+  "welcome": {
+    "title": "Anton Nedvedz Portfolio",
+    "description": "Моє професійне портфоліо реальних проєктів — перегляньте роботи, перш ніж ми поговоримо"
   }
 }
