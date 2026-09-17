@@ -1,5 +1,6 @@
 import { Button, Group } from '@mantine/core';
 import { useTranslation } from 'react-i18next';
+import actionButtonClasses from '../../styles/actionButton.module.css';
 import classes from './SectionLinks.module.css';
 
 const sectionLinks = [
@@ -15,7 +16,7 @@ export function SectionLinks() {
   return (
     <Group justify="center" className={classes.sectionLinks}>
       {sectionLinks.map((item) => (
-        <Button key={item.labelKey} className={classes.sectionLink}>
+        <Button key={item.labelKey} className={actionButtonClasses.actionButton}>
           {t(item.labelKey)}
         </Button>
       ))}

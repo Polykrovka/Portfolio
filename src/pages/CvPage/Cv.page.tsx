@@ -2,6 +2,7 @@ import { Anchor, Button, Container, List, Text, Title } from '@mantine/core';
 import { useTranslation } from 'react-i18next';
 import { Footer } from '../../components/Footer/Footer';
 import { Header } from '../../components/Header/Header';
+import actionButtonClasses from '../../styles/actionButton.module.css';
 import classes from './CvPage.module.css';
 
 const PDF_HREF = '/Anton-Nedvedz-Software-Engineer.pdf';
@@ -138,14 +139,6 @@ export function CvPage() {
                     {job.projectRoles}
                   </Text>
                 ) : null}
-                {job.tools && !job.customer ? (
-                  <Text>
-                    <Text span fw={700}>
-                      {t('cv.work.toolsLabel')}
-                    </Text>{' '}
-                    {job.tools}
-                  </Text>
-                ) : null}
                 {job.responsibilities?.length ? (
                   <>
                     <Text fw={700} mt="xs">
@@ -158,7 +151,7 @@ export function CvPage() {
                     </List>
                   </>
                 ) : null}
-                {job.tools && job.customer ? (
+                {job.tools ? (
                   <Text>
                     <Text span fw={700}>
                       {t('cv.work.toolsLabel')}
@@ -298,7 +291,7 @@ export function CvPage() {
               component="a"
               href={PDF_HREF}
               download="Anton-Nedvedz-Software-Engineer.pdf"
-              className={classes.downloadButton}
+              className={actionButtonClasses.actionButton}
             >
               {t('cv.downloadPdf')}
             </Button>
