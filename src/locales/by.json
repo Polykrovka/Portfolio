@@ -3,6 +3,7 @@
     "logo": "Anton Nedvedz Portfolio",
     "menu": "Меню",
     "mainPage": "Галоўная",
+    "cv": "CV",
     "frontend": "Frontend",
     "gameDev": "Game Dev",
     "contact": "Кантакты",
@@ -16,5 +17,14 @@
   "welcome": {
     "title": "Anton Nedvedz Portfolio",
     "description": "Маё прафесійнае партфоліа рэальных праектаў — паглядзіце працы, перш чым мы пагаворым"
+  },
+  "home": {
+    "intro": "На гэтай старонцы — агульныя звесткі пра мае навыкі. Зараз я найбольш зацікаўлены ў пазіцыі Unreal Engine C++ Developer. Калі вас цікавіць канкрэтны кірунак — пераходзьце адразу да патрэбнага раздзела."
+  },
+  "sections": {
+    "unity": "Unity",
+    "unreal": "Unreal",
+    "threeD": "3D",
+    "frontend": "Frontend"
   }
 }

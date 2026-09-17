@@ -1,16 +1,19 @@
 import { Anchor, Container, Text, Title} from '@mantine/core';
 import { Link } from 'react-router-dom';
 import { useMediaQuery } from '@mantine/hooks';
+import { useTranslation } from 'react-i18next';
 // import { AboutUs } from '../../components/AboutUs/AboutUs';
 // import { CardsCarousel } from '../../components/CardsCarousel/CardsCarousel';
 // import { ContactForm } from '../../components/ContactForm/ContactForm';
 import { Footer } from '../../components/Footer/Footer';
 import { Header } from '../../components/Header/Header';
+import { SectionLinks } from '../../components/SectionLinks/SectionLinks';
 import { Welcome } from '../../components/Welcome/Welcome';
 // import { useHomepage } from '../../hooks/useHomepage';
 import classes from './HomePage.module.css';
 
 export function HomePage() {
+  const { t } = useTranslation();
   const mobile = useMediaQuery('(max-width: 768px)');
   // const { homepageData } = useHomepage();
 
@@ -19,6 +22,12 @@ export function HomePage() {
     <Header />
       <div className={classes.wrapper}>
         <Welcome />
+        <div className={classes.widthWrapper}>
+          <Text className={classes.intro} ta="center" maw={720} mx="auto" mt={60} mb={40}>
+            {t('home.intro')}
+          </Text>
+          <SectionLinks />
+        </div>
       {/* 
       
         <div className={classes.widthWrapper}>

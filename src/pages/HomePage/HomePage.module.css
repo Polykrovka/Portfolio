@@ -21,6 +21,20 @@
     margin: 0 auto;
 }
 
+.intro {
+    font-family: 'Montserrat', sans-serif;
+    font-size: rem(22px);
+    font-weight: 600;
+    line-height: 1.5;
+    text-align: center;
+    color: light-dark(#0F172A, var(--mantine-color-white));
+
+    @media (max-width: $mantine-breakpoint-sm) {
+        font-size: rem(18px);
+        padding: 0 20px;
+    }
+}
+
 .contactContainer {
     padding: 0px 20px 40px;
     max-width: 900px;

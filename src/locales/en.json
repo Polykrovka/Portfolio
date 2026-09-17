@@ -3,6 +3,7 @@
     "logo": "Anton Nedvedz Portfolio",
     "menu": "Menu",
     "mainPage": "Main Page",
+    "cv": "CV",
     "frontend": "Frontend",
     "gameDev": "Game Dev",
     "contact": "Contact",
@@ -16,5 +17,14 @@
   "welcome": {
     "title": "Anton Nedvedz Portfolio",
     "description": "My professional portfolio of real projects — look through my work before we talk"
+  },
+  "home": {
+    "intro": "This page contains an overview of my skills. Right now I am most interested in an Unreal Engine C++ Developer role. If you are looking for a specific area, go straight to that section."
+  },
+  "sections": {
+    "unity": "Unity",
+    "unreal": "Unreal",
+    "threeD": "3D",
+    "frontend": "Frontend"
   }
 }

@@ -17,6 +17,7 @@ export function Header() {
 
   const mainLinks = [
     { link: '/', labelKey: 'header.mainPage' },
+    { link: '/cv', labelKey: 'header.cv' },
     { link: '/front', labelKey: 'header.frontend' },
     { link: '/game-dev', labelKey: 'header.gameDev' },
     { link: '/contact', labelKey: 'header.contact' },
@@ -26,6 +27,9 @@ export function Header() {
   const isActive = (link: string) => {
     if (link === '/') {
       return location.pathname === '/';
+    }
+    if (link.startsWith('/cv')) {
+      return location.pathname.startsWith('/cv');
     }
     if (link.startsWith('/front')) {
       return location.pathname.startsWith('/front');

@@ -1,0 +1,16 @@
+.wrapper {
+  min-height: calc((100vh - 92.8px) - 84px - 120px);
+  padding: var(--mantine-spacing-xl) 0;
+}
+
+.title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: rem(56px);
+  font-weight: 700;
+  text-align: center;
+  color: light-dark(#0F172A, var(--mantine-color-white));
+
+  @media (max-width: $mantine-breakpoint-md) {
+    font-size: rem(36px);
+  }
+}

@@ -3,6 +3,7 @@
     "logo": "Anton Nedvedz Portfolio",
     "menu": "Menu",
     "mainPage": "Strona główna",
+    "cv": "CV",
     "frontend": "Frontend",
     "gameDev": "Game Dev",
     "contact": "Kontakt",
@@ -16,5 +17,14 @@
   "welcome": {
     "title": "Anton Nedvedz Portfolio",
     "description": "Moje profesjonalne portfolio realnych projektów — zobacz moje prace, zanim porozmawiamy"
+  },
+  "home": {
+    "intro": "Na tej stronie znajdują się ogólne informacje o moich umiejętnościach. Obecnie najbardziej interesuje mnie stanowisko Unreal Engine C++ Developer. Jeśli interesuje Cię konkretny obszar — przejdź od razu do odpowiedniej sekcji."
+  },
+  "sections": {
+    "unity": "Unity",
+    "unreal": "Unreal",
+    "threeD": "3D",
+    "frontend": "Frontend"
   }
 }
