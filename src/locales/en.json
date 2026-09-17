@@ -26,5 +26,165 @@
     "unreal": "Unreal",
     "threeD": "3D",
     "frontend": "Frontend"
+  },
+  "cv": {
+    "downloadPdf": "Download PDF version",
+    "title": "Anton Nedvedz – Software Engineer (Frontend / Game Development / 3D Graphics)",
+    "skills": {
+      "title": "Skills",
+      "leadershipTitle": "Leadership & Soft Skills",
+      "leadership": [
+        {
+          "label": "Communication:",
+          "value": "Conflict management, Building dialogue, Teamwork and Collaboration"
+        },
+        { "label": "Growth Mindset:", "value": "Adaptability" },
+        { "label": "Ownership:", "value": "Problem-solving, Self-Management" }
+      ],
+      "managerialTitle": "Managerial",
+      "managerial": [{ "label": "General Management:", "value": "Scrum" }],
+      "technologiesTitle": "Technologies",
+      "technologies": [
+        { "label": "Standard:", "value": "Git" },
+        {
+          "label": "Game Engines:",
+          "value": "Unity (C#, ~1 year experience, gameplay systems, prototyping, UI, 3D mechanics), Unreal Engine (learning in progress)"
+        },
+        {
+          "label": "Computer Language:",
+          "value": "JavaScript, TypeScript, C#, C++"
+        },
+        { "label": "Markup & Styling:", "value": "HTML, CSS, SASS/SCSS" },
+        {
+          "label": "Framework:",
+          "value": "NextJs, ReactJS, Bootstrap CSS, MUI, Mantine, Jest, Express, Webpack, Redux"
+        },
+        {
+          "label": "Other:",
+          "value": "JavaScript Development Tools, SVG.js, Browser APIs, Chrome Extensions, Canvas, Web Communication Protocols, Microsoft Dynamics 365 Commerce, JavaScript in Browser, Javascript Performance, Microsoft Dynamics 365 E-Commerce, Postman, Sitemap, Nodemailer"
+        },
+        {
+          "label": "Web/Application Server:",
+          "value": "Node.js, NextJs, Prisma, Drizzle, Sanity (CMS)"
+        },
+        {
+          "label": "Solution:",
+          "value": "Chrome DevTools, Jira, Visual Studio Code, babeljs, Yarn, GitHub, GitLab, Confluence, JetBrains WebStorm, Vagrant"
+        },
+        { "label": "Operating System:", "value": "Linux, Windows" },
+        { "label": "Platform:", "value": "Amazon Web Services, NPM" },
+        { "label": "IDE:", "value": "Cursor, VS code, Visual studio" }
+      ]
+    },
+    "work": {
+      "title": "Work experience",
+      "toolsLabel": "Tools and Technologies:",
+      "responsibilitiesLabel": "Responsibilities:",
+      "customerLabel": "Customer:",
+      "customerDescriptionLabel": "Customer Description:",
+      "projectDescriptionLabel": "Project Description:",
+      "projectRolesLabel": "Project Roles:",
+      "jobs": [
+        {
+          "title": "Jul 2025 – Jun 2026 — 3D Graphic Designer, Coast Team Studio (Remote, Warsaw)",
+          "tools": "Cinema 4D, Octane Render, Adobe After Effects, Adobe Photoshop, Adobe Illustrator, Blender, Materialize, Topaz, Nano Banana",
+          "responsibilities": [
+            "3D modeling and asset creation for advertising renders",
+            "Preparing models and materials for rendering pipelines",
+            "Creating visual assets for promotional and commercial content",
+            "Working with animation and compositing tools",
+            "Preparing renders and assets for integration into projects"
+          ]
+        },
+        {
+          "title": "Sep 2023 – Mar 2024 — Software Engineer, Hansel & Baum Group (H&BG)",
+          "customer": "Artpower.pl",
+          "customerDescription": "Art",
+          "projectDescription": "Website for an online gallery for the sale of paintings. Artpower.pl",
+          "projectRoles": "Software Engineer",
+          "responsibilities": [
+            "Developed the desktop part of website",
+            "Add meta tags, accessibility, sitemap",
+            "Add requests to the server (partially backend) and meilisearch.",
+            "Made admin part of website"
+          ],
+          "tools": "Prisma, Drizzle, Visual Studio Code, postman, NextJs, React, TypeScript"
+        },
+        {
+          "title": "Aug 2022 – Sep 2023 — Software Engineer, EPAM Systems,",
+          "companyUrl": "https://www.epam.com/",
+          "customer": "London Stock Exchange Group",
+          "customerDescription": "Business Information and Media",
+          "projectDescription": "Working on core functionality of Electron-based desktop framework Refinitiv Workspace (former Eikon). It provide access to the set of software products provided by Refinitiv for financial professionals to monitor and analyze financial information. It provides access to real time market data, news, fundamental data, analytics, trading and messaging tools. It provides data on asset classes including Foreign Exchange, Money Markets, Fixed Income, Equities, Commodities, Funds, and Real Estate",
+          "projectRoles": "Software Engineer",
+          "responsibilities": [
+            "As a Software Engineer, I was involved in the development of core functionality of Electron-based desktop framework Refinitiv Workspace (former Eikon). Worked on layout, validation, queries and tests",
+            "Participated in estimating tasks and discussing functionality",
+            "Completed and reported on SCRUM sprint tasks"
+          ],
+          "tools": "Visual Studio Code, Fiddler, SonarCube, BlackDuck, Angular, React, TypeScript"
+        },
+        {
+          "title": "Sep 2021 – Aug 2022 — Junior Software Engineer, EPAM Systems,",
+          "companyUrl": "https://www.epam.com/",
+          "customer": "Boden",
+          "customerDescription": "Retail & Distribution",
+          "projectDescription": "Integration of a new ERP/commerce platform for the client web-store: MS Dynamics 365",
+          "projectRoles": "Junior Software Engineer",
+          "responsibilities": [
+            "As a Junior Software Engineer, I was involved in the development of Checkout for an online store. Worked on layout, validation, queries and tests",
+            "Participated in estimating tasks and discussing functionality",
+            "Completed and reported on SCRUM sprint tasks",
+            "Also worked on a variety of accessibility tasks"
+          ],
+          "tools": "WebStorm, Postman, Fiddler, Yarn, WAVE, Location Guard, React Developer Tools, VS Code, AWS, Vagrant, React, MobX, TypeScript, NodeJS, SCSS, Microsoft Dynamics 365"
+        }
+      ]
+    },
+    "education": {
+      "title": "Education",
+      "establishmentLabel": "Name of the Education Establishment:",
+      "facultyLabel": "Faculty/College:",
+      "degreeLabel": "Degree (diploma):",
+      "specialtyLabel": "Specialty:",
+      "college1": {
+        "establishment": "Minsk State College of Builders",
+        "faculty": "Carpenter, woodworker",
+        "degree": "Specialist",
+        "specialty": "Joiner, carpenter, machine operator"
+      },
+      "college2": {
+        "establishment": "MINSK STATE MUSICAL COLLEGE NAME AFTER MICHAIL GLINKA",
+        "faculty": "Musicology",
+        "degree": "Specialist",
+        "specialty": "team leader, teacher, conductor, guitar player"
+      }
+    },
+    "courses": {
+      "title": "Training Courses",
+      "items": [
+        "The Rolling Scopes \"JS / FRONT-END\" short-track – JavaScript / Front-end",
+        "Unity Learn (Unity Essentials, Junior Programmer) – Unity / Game Development",
+        "O’Reilly (Unity Game Development courses) – Unity / Game Development"
+      ]
+    },
+    "languages": {
+      "title": "Languages",
+      "items": [
+        { "label": "English:", "value": "B1+" },
+        { "label": "Polish:", "value": "B1+" },
+        { "label": "Russian:", "value": "Native Speaker" },
+        { "label": "Ukrainian, Belarusian:", "value": "I can communicate" }
+      ]
+    },
+    "contacts": {
+      "title": "Contacts",
+      "emailLabel": "Email:",
+      "githubLabel": "GitHub:",
+      "phoneLabel": "Phone:",
+      "email": "2595092@gmail.com",
+      "github": "https://github.com/Polykrovka",
+      "phone": "+48 573336346"
+    }
   }
 }
