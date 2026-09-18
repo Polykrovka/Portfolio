@@ -2,6 +2,7 @@ import { Anchor, Button, Container, List, Text, Title } from '@mantine/core';
 import { useTranslation } from 'react-i18next';
 import { Footer } from '../../components/Footer/Footer';
 import { Header } from '../../components/Header/Header';
+import { useDocumentTitle } from '../../hooks/useDocumentTitle';
 import actionButtonClasses from '../../styles/actionButton.module.css';
 import classes from './CvPage.module.css';
 
@@ -22,9 +23,9 @@ type Job = {
 
 export function CvPage() {
   const { t } = useTranslation();
+  useDocumentTitle('header.cv');
 
   const leadership = t('cv.skills.leadership', { returnObjects: true }) as LabeledItem[];
-  const managerial = t('cv.skills.managerial', { returnObjects: true }) as LabeledItem[];
   const technologies = t('cv.skills.technologies', {
     returnObjects: true,
   }) as LabeledItem[];
@@ -64,14 +65,12 @@ export function CvPage() {
               {t('cv.skills.managerialTitle')}
             </Title>
             <List className={classes.list}>
-              {managerial.map((item) => (
-                <List.Item key={item.label}>
-                  <Text span fw={700}>
-                    {item.label}
-                  </Text>{' '}
-                  {item.value}
-                </List.Item>
-              ))}
+              <List.Item>
+                <Text span fw={700}>
+                  {t('cv.skills.managerial.0.label')}
+                </Text>{' '}
+                {t('cv.skills.managerial.0.value')}
+              </List.Item>
             </List>
 
             <Title order={3} className={classes.subTitle}>

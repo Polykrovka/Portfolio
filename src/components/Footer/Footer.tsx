@@ -101,7 +101,7 @@ export function Footer() {
       <Container className={classes.inner}>
         <div className={classes.logo}>
           <Text size="xl" fw={700} className={classes.logoText}>
-            {t('header.logo')}
+            {t('header.siteName')}
           </Text>
           <Text size="xs" c="dimmed" className={classes.description}>
             {t('footer.description')}

@@ -118,7 +118,7 @@ export function Header() {
       <Container className={classes.inner}>
         <Anchor component={Link} to="/" style={{ textDecoration: 'none' }} onClick={() => window.scrollTo(0, 0)}>
           <Text size="xl" fw={700} className={classes.logoText}>
-            {t('header.logo')}
+            {t('header.siteName')}
           </Text>
         </Anchor>
         <Box className={classes.links} visibleFrom="sm">

@@ -9,12 +9,14 @@ import { Footer } from '../../components/Footer/Footer';
 import { Header } from '../../components/Header/Header';
 import { SectionLinks } from '../../components/SectionLinks/SectionLinks';
 import { Welcome } from '../../components/Welcome/Welcome';
+import { useDocumentTitle } from '../../hooks/useDocumentTitle';
 // import { useHomepage } from '../../hooks/useHomepage';
 import classes from './HomePage.module.css';
 
 export function HomePage() {
   const { t } = useTranslation();
   const mobile = useMediaQuery('(max-width: 768px)');
+  useDocumentTitle();
   // const { homepageData } = useHomepage();
 
   return (
