@@ -176,15 +176,21 @@
         { "label": "Russian:", "value": "Native Speaker" },
         { "label": "Ukrainian, Belarusian:", "value": "I can communicate" }
       ]
-    },
-    "contacts": {
-      "title": "Contacts",
-      "emailLabel": "Email:",
-      "githubLabel": "GitHub:",
-      "phoneLabel": "Phone:",
-      "email": "2595092@gmail.com",
-      "github": "https://github.com/Polykrovka",
-      "phone": "+48 573336346"
     }
+  },
+  "contacts": {
+    "title": "Contacts",
+    "name": "Anton Nedvedz",
+    "emailLabel": "Email:",
+    "githubLabel": "GitHub",
+    "phoneLabel": "Phone:",
+    "telegramLabel": "Telegram",
+    "whatsappLabel": "WhatsApp",
+    "addressLabel": "Address:",
+    "email": "2595092@gmail.com",
+    "github": "https://github.com/Polykrovka",
+    "phone": "+48 573336346",
+    "telegram": "https://t.me/llolykrovka",
+    "address": "ul. Stefana Jaracza, 00-378 Warszawa"
   }
 }

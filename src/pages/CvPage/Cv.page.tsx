@@ -251,36 +251,54 @@ export function CvPage() {
 
           <section className={classes.section}>
             <Title order={2} className={classes.sectionTitle}>
-              {t('cv.contacts.title')}
+              {t('contacts.title')}
             </Title>
             <List className={classes.list}>
               <List.Item>
                 <Text span fw={700}>
-                  {t('cv.contacts.emailLabel')}
+                  {t('contacts.emailLabel')}
                 </Text>{' '}
-                <Anchor href={`mailto:${t('cv.contacts.email')}`}>
-                  {t('cv.contacts.email')}
+                <Anchor href={`mailto:${t('contacts.email')}`}>
+                  {t('contacts.email')}
                 </Anchor>
               </List.Item>
               <List.Item>
                 <Text span fw={700}>
-                  {t('cv.contacts.githubLabel')}
+                  {t('contacts.githubLabel')}:
                 </Text>{' '}
                 <Anchor
-                  href={t('cv.contacts.github')}
+                  href={t('contacts.github')}
                   target="_blank"
                   rel="noreferrer"
                 >
-                  {t('cv.contacts.github')}
+                  {t('contacts.github')}
                 </Anchor>
               </List.Item>
               <List.Item>
                 <Text span fw={700}>
-                  {t('cv.contacts.phoneLabel')}
+                  {t('contacts.phoneLabel')}
                 </Text>{' '}
-                <Anchor href={`tel:${t('cv.contacts.phone').replace(/\s/g, '')}`}>
-                  {t('cv.contacts.phone')}
+                <Anchor href={`tel:${t('contacts.phone').replace(/\s/g, '')}`}>
+                  {t('contacts.phone')}
                 </Anchor>
+              </List.Item>
+              <List.Item>
+                <Text span fw={700}>
+                  {t('contacts.telegramLabel')}:
+                </Text>{' '}
+                <Anchor
+                  href={t('contacts.telegram')}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {t('contacts.telegram')}
+                </Anchor>
+              </List.Item>
+              <List.Item>
+                <Text span fw={700}>
+                  {t('contacts.addressLabel')}
+                </Text>{' '}
+                {t('contacts.address')}
               </List.Item>
             </List>
           </section>

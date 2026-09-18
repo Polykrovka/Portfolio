@@ -1,8 +1,6 @@
 import { Anchor, Container, Text } from '@mantine/core';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-// import { useContactInfo } from '../../hooks/useContactInfo';
-// import { useProperties } from '../../hooks/useProperties';
 import classes from './Footer.module.css';
 
 interface LinkItem {
@@ -18,19 +16,16 @@ interface GroupData {
 
 export function Footer() {
   const { t } = useTranslation();
-  // const { contactInfo } = useContactInfo();
-  // const { properties } = useProperties();
-  const contactInfo = undefined as
-    | {
-        companyName?: string;
-        address?: string;
-        krs?: string;
-        nip?: string;
-        regon?: string;
-        phone?: string;
-        email?: string;
-      }
-    | undefined;
+
+  const contactInfo = {
+    address: t('contacts.address'),
+    phone: t('contacts.phone'),
+    email: t('contacts.email'),
+    github: t('contacts.github'),
+    telegram: t('contacts.telegram'),
+  };
+
+  const phoneTel = contactInfo.phone.replace(/\s/g, '');
 
   const data: GroupData[] = [
     {
@@ -109,31 +104,49 @@ export function Footer() {
 
           <div className={classes.contactsWrapper}>
             <Text className={classes.contactText}>
-              {contactInfo?.companyName}, {contactInfo?.address}
+              {t('contacts.name')}, {contactInfo.address}
             </Text>
 
             <Text className={classes.contactText}>
-              KRS: {contactInfo?.krs} · NIP: {contactInfo?.nip} · REGON: {contactInfo?.regon}
-            </Text>
-
-            <Text className={classes.contactText}>
-              <Anchor className={classes.contactLink} href={`tel:${contactInfo?.phone}`}>
-                Tel: {contactInfo?.phone}
+              <Anchor className={classes.contactLink} href={`tel:${contactInfo.phone}`}>
+                Tel: {contactInfo.phone}
               </Anchor>
             </Text>
 
             <Text className={classes.contactText}>
-              <Anchor className={classes.contactLink} href={`mailto:${contactInfo?.email}`}>
-                {contactInfo?.email}
+              <Anchor className={classes.contactLink} href={`mailto:${contactInfo.email}`}>
+                {contactInfo.email}
+              </Anchor>
+            </Text>
+
+            <Text className={classes.contactText}>
+              <Anchor
+                className={classes.contactLink}
+                href={`https://wa.me/${phoneTel.replace(/\D/g, '')}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {t('contacts.whatsappLabel')}
               </Anchor>
               {', '}
               <Anchor
                 className={classes.contactLink}
-                href={`https://wa.me/${contactInfo?.phone?.replace(/\D/g, '')}`}
+                href={contactInfo.telegram}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                WhatsApp
+                {t('contacts.telegramLabel')}
+              </Anchor>
+            </Text>
+
+            <Text className={classes.contactText}>
+              <Anchor
+                className={classes.contactLink}
+                href={contactInfo.github}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {t('contacts.githubLabel')}
               </Anchor>
             </Text>
           </div>
@@ -142,7 +155,7 @@ export function Footer() {
       </Container>
       <Container className={classes.afterFooter}>
         <Text c="dimmed" size="sm">
-          © 2026 {contactInfo?.companyName} {t('footer.rights')}
+          © 2026 {t('header.siteName')} {t('footer.rights')}
         </Text>
       </Container>
     </footer>
