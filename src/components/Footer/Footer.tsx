@@ -1,4 +1,5 @@
 import { Anchor, Container, Text } from '@mantine/core';
+import type { ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import classes from './Footer.module.css';
@@ -14,6 +15,19 @@ interface GroupData {
   links: LinkItem[];
 }
 
+function ContactLink({ href, children }: { href: string; children: ReactNode }) {
+  return (
+    <Anchor
+      className={classes.contactLink}
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      {children}
+    </Anchor>
+  );
+}
+
 export function Footer() {
   const { t } = useTranslation();
 
@@ -22,10 +36,12 @@ export function Footer() {
     phone: t('contacts.phone'),
     email: t('contacts.email'),
     github: t('contacts.github'),
+    linkedin: t('contacts.linkedin'),
     telegram: t('contacts.telegram'),
   };
 
   const phoneTel = contactInfo.phone.replace(/\s/g, '');
+  const whatsappUrl = `https://wa.me/${phoneTel.replace(/\D/g, '')}`;
 
   const data: GroupData[] = [
     {
@@ -120,34 +136,19 @@ export function Footer() {
             </Text>
 
             <Text className={classes.contactText}>
-              <Anchor
-                className={classes.contactLink}
-                href={`https://wa.me/${phoneTel.replace(/\D/g, '')}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {t('contacts.whatsappLabel')}
-              </Anchor>
+              <ContactLink href={whatsappUrl}>{t('contacts.whatsappLabel')}</ContactLink>
               {', '}
-              <Anchor
-                className={classes.contactLink}
-                href={contactInfo.telegram}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <ContactLink href={contactInfo.telegram}>
                 {t('contacts.telegramLabel')}
-              </Anchor>
+              </ContactLink>
             </Text>
 
             <Text className={classes.contactText}>
-              <Anchor
-                className={classes.contactLink}
-                href={contactInfo.github}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {t('contacts.githubLabel')}
-              </Anchor>
+              <ContactLink href={contactInfo.github}>{t('contacts.githubLabel')}</ContactLink>
+              {', '}
+              <ContactLink href={contactInfo.linkedin}>
+                {t('contacts.linkedinLabel')}
+              </ContactLink>
             </Text>
           </div>
         </div>
