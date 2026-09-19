@@ -21,7 +21,7 @@ export function Header() {
     { link: '/front', labelKey: 'header.frontend' },
     { link: '/game-dev', labelKey: 'header.gameDev' },
     { link: '/contact', labelKey: 'header.contact' },
-    { link: '/personal-info', labelKey: 'header.personalInfo' },
+    { link: '/personal', labelKey: 'header.personalInfo' },
   ];
 
   const isActive = (link: string) => {
@@ -40,8 +40,8 @@ export function Header() {
     if (link.startsWith('/contact')) {
       return location.pathname.startsWith('/contact');
     }
-    if (link.startsWith('/personal-info')) {
-      return location.pathname.startsWith('/personal-info');
+    if (link.startsWith('/personal')) {
+      return location.pathname.startsWith('/personal');
     }
     return false;
   };

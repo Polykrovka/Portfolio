@@ -52,7 +52,7 @@ export function Footer() {
         { label: t('header.frontend'), link: '/front', isRoute: true },
         { label: t('header.gameDev'), link: '/game-dev', isRoute: true },
         { label: t('header.contact'), link: '/contact', isRoute: true },
-        { label: t('header.personalInfo'), link: '/personal-info', isRoute: true },
+        { label: t('header.personalInfo'), link: '/personal', isRoute: true },
       ],
     },
   ];
