@@ -171,8 +171,8 @@
     "languages": {
       "title": "Languages",
       "items": [
-        { "label": "English:", "value": "B1+" },
-        { "label": "Polish:", "value": "B1+" },
+        { "label": "English:", "value": "B2" },
+        { "label": "Polish:", "value": "B2" },
         { "label": "Russian:", "value": "Native Speaker" },
         { "label": "Ukrainian, Belarusian:", "value": "I can communicate" }
       ]
