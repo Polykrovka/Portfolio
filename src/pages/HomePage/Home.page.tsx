@@ -1,10 +1,11 @@
 import { Anchor, Container, Text, Title} from '@mantine/core';
 import { Link } from 'react-router-dom';
 import { useMediaQuery } from '@mantine/hooks';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 // import { AboutUs } from '../../components/AboutUs/AboutUs';
 // import { CardsCarousel } from '../../components/CardsCarousel/CardsCarousel';
 // import { ContactForm } from '../../components/ContactForm/ContactForm';
+import { CustomLink } from '../../components/CustomLink/CustomLink';
 import { Footer } from '../../components/Footer/Footer';
 import { Header } from '../../components/Header/Header';
 import { SectionLinks } from '../../components/SectionLinks/SectionLinks';
@@ -30,6 +31,26 @@ export function HomePage() {
           </Text>
           <SectionLinks />
         </div>
+
+        <section className={classes.cppSection}>
+          <Title order={2} className={classes.sectionTitle}>
+            C++
+          </Title>
+        </section>
+
+        <section className={classes.frontendSection}>
+          <Title order={2} className={classes.sectionTitle}>
+            {t('sections.frontend')}
+          </Title>
+          <Text className={classes.text} maw={720} mx="auto">
+            <Trans
+              i18nKey="home.frontendProject"
+              components={{
+                school: <CustomLink href="https://rs.school/" className={classes.contactLink} />,
+              }}
+            />
+          </Text>
+        </section>
       {/* 
       
         <div className={classes.widthWrapper}>
