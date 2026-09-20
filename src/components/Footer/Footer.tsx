@@ -1,7 +1,7 @@
 import { Anchor, Container, Text } from '@mantine/core';
-import type { ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
+import { CustomLink } from '../CustomLink/CustomLink';
 import classes from './Footer.module.css';
 
 interface LinkItem {
@@ -13,19 +13,6 @@ interface LinkItem {
 interface GroupData {
   title: string;
   links: LinkItem[];
-}
-
-function ContactLink({ href, children }: { href: string; children: ReactNode }) {
-  return (
-    <Anchor
-      className={classes.contactLink}
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      {children}
-    </Anchor>
-  );
 }
 
 export function Footer() {
@@ -136,19 +123,23 @@ export function Footer() {
             </Text>
 
             <Text className={classes.contactText}>
-              <ContactLink href={whatsappUrl}>{t('contacts.whatsappLabel')}</ContactLink>
+              <CustomLink href={whatsappUrl} className={classes.contactLink}>
+                {t('contacts.whatsappLabel')}
+              </CustomLink>
               {', '}
-              <ContactLink href={contactInfo.telegram}>
+              <CustomLink href={contactInfo.telegram} className={classes.contactLink}>
                 {t('contacts.telegramLabel')}
-              </ContactLink>
+              </CustomLink>
             </Text>
 
             <Text className={classes.contactText}>
-              <ContactLink href={contactInfo.github}>{t('contacts.githubLabel')}</ContactLink>
+              <CustomLink href={contactInfo.github} className={classes.contactLink}>
+                {t('contacts.githubLabel')}
+              </CustomLink>
               {', '}
-              <ContactLink href={contactInfo.linkedin}>
+              <CustomLink href={contactInfo.linkedin} className={classes.contactLink}>
                 {t('contacts.linkedinLabel')}
-              </ContactLink>
+              </CustomLink>
             </Text>
           </div>
         </div>
