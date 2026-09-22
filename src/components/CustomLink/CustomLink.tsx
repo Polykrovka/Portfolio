@@ -9,8 +9,6 @@ type CustomLinkProps = {
 
 export function CustomLink({ href, className, children }: CustomLinkProps) {
   return (
-    <Anchor className={className} href={href} target="_blank" rel="noopener noreferrer">
-      {children}
-    </Anchor>
+    <Anchor className={className} href={href} target="_blank" rel="noopener noreferrer">{children}</Anchor>
   );
 }

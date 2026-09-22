@@ -20,7 +20,9 @@
   },
   "home": {
     "intro": "This page contains an overview of my skills. Right now I am most interested in an Unreal Engine C++ Developer role. If you are looking for a specific area, go straight to that section.",
-    "frontendProject": "My first relatively large project was a training website for the <school>The Rolling Scopes</school> course. It was an online zoo where you could pick an animal on a map and open a live stream page with it. Unfortunately the streams ended long ago and are no longer relevant. But the site itself is hosted on GitHub, works well, and can still be reviewed. And because it was a training site, it was built with plain JavaScript, HTML, and CSS — no frameworks, and long before AI. That should show my fundamentals and that I can work without heavily simplifying frameworks and LLMs."
+    "frontendProject": "My first relatively large project was a training website for the <school>The Rolling Scopes</school> course. It was an online zoo where you could pick an animal on a map and open a live stream page with it. Unfortunately the streams ended long ago and are no longer relevant. But the site itself is hosted on GitHub, works well, and can still be reviewed. And because it was a training site, it was built with plain JavaScript, HTML, and CSS — no frameworks, and long before AI. That should show my fundamentals and that I can work without heavily simplifying frameworks and LLMs.",
+    "frontendChess": "Once I tried to build a chess game in Next.js in a single night — the repo is <repo>OneNightChess</repo>. For fun, and because I always wanted to make a game. This is one of my earliest attempts. It already worked, but it was unfinished. On this site I took that code and brought it up to shape (working with legacy 🙂). I did not change the core logic — I only finished it and added a couple of features, like:.",
+    "frontendChessRedux": "I also used Redux in the project: I have not had commercial work with it, but many projects need it — this is how I show that I can work with it."
   },
   "personal": {
     "title": "Yeah, it's me!"

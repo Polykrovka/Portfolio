@@ -6,6 +6,7 @@ import { Trans, useTranslation } from 'react-i18next';
 // import { CardsCarousel } from '../../components/CardsCarousel/CardsCarousel';
 // import { ContactForm } from '../../components/ContactForm/ContactForm';
 import { CustomLink } from '../../components/CustomLink/CustomLink';
+import { CheckersGame } from '../../components/CheckersGame/CheckersGame';
 import { Footer } from '../../components/Footer/Footer';
 import { Header } from '../../components/Header/Header';
 import { SectionLinks } from '../../components/SectionLinks/SectionLinks';
@@ -50,6 +51,18 @@ export function HomePage() {
               }}
             />
           </Text>
+          <Text className={classes.text} maw={720} mx="auto">
+            <Trans
+              i18nKey="home.frontendChess"
+              components={{
+                repo: <CustomLink href="https://github.com/Polykrovka/OneNightChess" className={classes.contactLink} />,
+              }}
+            />
+          </Text>
+          <Text className={classes.text} maw={720} mx="auto">
+            {t('home.frontendChessRedux')}
+          </Text>
+          <CheckersGame />
         </section>
       {/* 
       
