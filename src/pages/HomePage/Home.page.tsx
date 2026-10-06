@@ -27,43 +27,43 @@ export function HomePage() {
       <div className={classes.wrapper}>
         <Welcome />
         <div className={classes.widthWrapper}>
-          <Text className={classes.intro} ta="center" maw={720} mx="auto" mt={60} mb={40}>
+        <Text className={classes.intro} ta="center" maw={720} mx="auto" mt={60} mb={40}>
             {t('home.intro')}
           </Text>
           <SectionLinks />
+
+          <section className={classes.cppSection}>
+            <Title order={2} className={classes.sectionTitle}>
+              C++
+            </Title>
+          </section>
+
+          <section className={classes.frontendSection}>
+            <Title order={2} className={classes.sectionTitle}>
+              {t('sections.frontend')}
+            </Title>
+            <Text className={classes.text}>
+              <Trans
+                i18nKey="home.frontendProject"
+                components={{
+                  school: <CustomLink href="https://rs.school/" className={classes.contactLink} />,
+                }}
+              />
+            </Text>
+            <Text className={classes.text}>
+              <Trans
+                i18nKey="home.frontendChess"
+                components={{
+                  repo: <CustomLink href="https://github.com/Polykrovka/OneNightChess" className={classes.contactLink} />,
+                }}
+              />
+            </Text>
+            <Text className={classes.text}>
+              {t('home.frontendChessRedux')}
+            </Text>
+            <CheckersGame />
+          </section>
         </div>
-
-        <section className={classes.cppSection}>
-          <Title order={2} className={classes.sectionTitle}>
-            C++
-          </Title>
-        </section>
-
-        <section className={classes.frontendSection}>
-          <Title order={2} className={classes.sectionTitle}>
-            {t('sections.frontend')}
-          </Title>
-          <Text className={classes.text} maw={720} mx="auto">
-            <Trans
-              i18nKey="home.frontendProject"
-              components={{
-                school: <CustomLink href="https://rs.school/" className={classes.contactLink} />,
-              }}
-            />
-          </Text>
-          <Text className={classes.text} maw={720} mx="auto">
-            <Trans
-              i18nKey="home.frontendChess"
-              components={{
-                repo: <CustomLink href="https://github.com/Polykrovka/OneNightChess" className={classes.contactLink} />,
-              }}
-            />
-          </Text>
-          <Text className={classes.text} maw={720} mx="auto">
-            {t('home.frontendChessRedux')}
-          </Text>
-          <CheckersGame />
-        </section>
       {/* 
       
         <div className={classes.widthWrapper}>

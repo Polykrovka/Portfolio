@@ -1,14 +1,9 @@
-$field-size: 100vw;
-
 .field {
-  width: $field-size;
-  height: $field-size;
+  width: 100%;
+  aspect-ratio: 1;
   display: flex;
   flex-wrap: wrap;
   border: black 1px solid;
-  margin: 48px;
-  max-width: 800px;
-  max-height: 800px;
 }
 
 .cell {
