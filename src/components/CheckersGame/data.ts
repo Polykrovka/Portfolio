@@ -1,49 +1,76 @@
-export const data = {};
+import { configureStore, createSlice } from '@reduxjs/toolkit';
 
-let toggle = false;
+function createInitialState(): Record<string, any> {
+  // Initial placement of pieces on the board
+  const gameState: Record<string, any> = {};
+  let toggle = false;
 
-for (let j = 1; j <= 8; j++) {
-  for (let i = 1; i <= 8; i++) {
-    data[`${i}${j}`] = { color: `${toggle ? 'white' : 'black'}`, figure: null, isActive: false, canGo: false, canFight: false }
-    if (i === 2 ) {
-      data[`${i}${j}`].figure = 'whitePawn';
-      data[`${i}${j}`].figureColor = 'white';
-    } else if (i === 7) {
-      data[`${i}${j}`].figure = 'blackPawn';
-      data[`${i}${j}`].figureColor = 'black';
-    } else if (i === 8 && j ===5) {
-      data[`${i}${j}`].figure = 'blackQueen';
-      data[`${i}${j}`].figureColor = 'black';
-    } else if (i === 1 && j === 5) {
-      data[`${i}${j}`].figure = 'whiteQueen';
-      data[`${i}${j}`].figureColor = 'white';
-    } else if (i === 8 && j === 4) {
-      data[`${i}${j}`].figure = 'blackKing';
-      data[`${i}${j}`].figureColor = 'black';
-    } else if (i === 1 && j === 4) {
-      data[`${i}${j}`].figure = 'whiteKing';
-      data[`${i}${j}`].figureColor = 'white';
-    } else if (i === 8 && (j === 8 || j === 1)) {
-      data[`${i}${j}`].figure = 'blackCastle';
-      data[`${i}${j}`].figureColor = 'black';
-    } else if (i === 1 && (j === 8 || j === 1)) {
-      data[`${i}${j}`].figure = 'whiteCastle';
-      data[`${i}${j}`].figureColor = 'white';
-    } else if (i === 8 && (j === 6 || j === 3)) {
-      data[`${i}${j}`].figure = 'blackOfficer';
-      data[`${i}${j}`].figureColor = 'black';
-    } else if (i === 1 && (j === 6 || j === 3)) {
-      data[`${i}${j}`].figure = 'whiteOfficer';
-      data[`${i}${j}`].figureColor = 'white';
-    } else if (i === 8 && (j === 7 || j === 2)) {
-      data[`${i}${j}`].figure = 'blackHorse';
-      data[`${i}${j}`].figureColor = 'black';
-    } else if (i === 1 && (j === 7 || j === 2)) {
-      data[`${i}${j}`].figure = 'whiteHorse';
-      data[`${i}${j}`].figureColor = 'white';
+  for (let j = 1; j <= 8; j++) {
+    for (let i = 1; i <= 8; i++) {
+      gameState[`${i}${j}`] = { color: `${toggle ? 'white' : 'black'}`, figure: null, isActive: false, canGo: false, canFight: false }
+      if (i === 2 ) {
+        gameState[`${i}${j}`].figure = 'whitePawn';
+        gameState[`${i}${j}`].figureColor = 'white';
+      } else if (i === 7) {
+        gameState[`${i}${j}`].figure = 'blackPawn';
+        gameState[`${i}${j}`].figureColor = 'black';
+      } else if (i === 8 && j ===5) {
+        gameState[`${i}${j}`].figure = 'blackQueen';
+        gameState[`${i}${j}`].figureColor = 'black';
+      } else if (i === 1 && j === 5) {
+        gameState[`${i}${j}`].figure = 'whiteQueen';
+        gameState[`${i}${j}`].figureColor = 'white';
+      } else if (i === 8 && j === 4) {
+        gameState[`${i}${j}`].figure = 'blackKing';
+        gameState[`${i}${j}`].figureColor = 'black';
+      } else if (i === 1 && j === 4) {
+        gameState[`${i}${j}`].figure = 'whiteKing';
+        gameState[`${i}${j}`].figureColor = 'white';
+      } else if (i === 8 && (j === 8 || j === 1)) {
+        gameState[`${i}${j}`].figure = 'blackCastle';
+        gameState[`${i}${j}`].figureColor = 'black';
+      } else if (i === 1 && (j === 8 || j === 1)) {
+        gameState[`${i}${j}`].figure = 'whiteCastle';
+        gameState[`${i}${j}`].figureColor = 'white';
+      } else if (i === 8 && (j === 6 || j === 3)) {
+        gameState[`${i}${j}`].figure = 'blackOfficer';
+        gameState[`${i}${j}`].figureColor = 'black';
+      } else if (i === 1 && (j === 6 || j === 3)) {
+        gameState[`${i}${j}`].figure = 'whiteOfficer';
+        gameState[`${i}${j}`].figureColor = 'white';
+      } else if (i === 8 && (j === 7 || j === 2)) {
+        gameState[`${i}${j}`].figure = 'blackHorse';
+        gameState[`${i}${j}`].figureColor = 'black';
+      } else if (i === 1 && (j === 7 || j === 2)) {
+        gameState[`${i}${j}`].figure = 'whiteHorse';
+        gameState[`${i}${j}`].figureColor = 'white';
+      }
+
+      toggle = !toggle;
     }
-    
     toggle = !toggle;
   }
-  toggle = !toggle;
+
+  return gameState;
 }
+
+const gameStateSlice = createSlice({
+  name: 'gameState',
+  initialState: createInitialState(),
+  reducers: {
+    resetGameState() {
+      return createInitialState();
+    },
+  },
+});
+
+export const { resetGameState } = gameStateSlice.actions;
+
+export const store = configureStore({
+  reducer: {
+    gameState: gameStateSlice.reducer,
+  },
+});
+
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
