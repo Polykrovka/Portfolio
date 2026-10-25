@@ -1,6 +1,7 @@
-import { data } from "../data";
+import { store } from "../data";
 
 export default function handleHorse(e, color) {
+  const data = store.getState().gameState;
   const colorAganst = color === 'black' ? 'white' : 'black';
   const cell = e.target.parentElement.id;
   data[cell].isActive = true;

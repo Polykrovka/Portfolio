@@ -1,6 +1,7 @@
-import { data } from "../data";
+import { store } from "../data";
 
 export default function handleWhitePawn(e) {
+  const data = store.getState().gameState;
   const cell = e.target.parentElement.id;
   data[cell].isActive = true;
   const nextStep = `${+cell[0] + 1}${cell[1]}`
