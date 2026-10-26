@@ -1,4 +1,4 @@
-import { configureStore, createSlice } from '@reduxjs/toolkit';
+import { configureStore, createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
 function createInitialState(): Record<string, any> {
   // Initial placement of pieces on the board
@@ -72,10 +72,17 @@ const gameStateSlice = createSlice({
         state[activeKey].isActive = false;
       }
     },
+    movePiece(state, action: PayloadAction<{ from: string; to: string }>) {
+      const { from, to } = action.payload;
+      state[to].figure = state[from].figure;
+      state[to].figureColor = state[from].figureColor;
+      state[from].figure = null;
+      state[from].figureColor = null;
+    },
   },
 });
 
-export const { resetGameState, removeCanGo, clearActive } = gameStateSlice.actions;
+export const { resetGameState, removeCanGo, clearActive, movePiece } = gameStateSlice.actions;
 
 export const store = configureStore({
   reducer: {

@@ -9,7 +9,7 @@ import handleCastle from '../figures/castle';
 import handleOfficer from '../figures/officer';
 import handleKing from '../figures/king';
 import handleHorse from '../figures/horse';
-import { clearActive, removeCanGo, type RootState } from '../data';
+import { clearActive, movePiece, removeCanGo, type RootState } from '../data';
 
 type FieldProps = {
   isWhiteTurn: boolean;
@@ -31,10 +31,7 @@ export default function Field(props: FieldProps) {
     const id = e.target.id || e.target.parentElement.id;
 
     if (gameState[id] && gameState[id].canGo) {
-      gameState[id].figure = activeElement.figure
-      gameState[id].figureColor = activeElement.figureColor
-      activeElement.figure = null;
-      activeElement.figureColor = null;
+      dispatch(movePiece({ from: activeElement, to: id }))
       dispatch(clearActive())
       dispatch(removeCanGo())
       setActiveElement(null);
@@ -51,43 +48,43 @@ export default function Field(props: FieldProps) {
     if (isWhiteTurn) {
       if (e.target.className.includes('figure_whitePawn')) {
         handleWhitePawn(e)
-        setActiveElement(gameState[id]);
+        setActiveElement(id);
       } else if (e.target.className.includes('figure_whiteQueen')) {
         handleQueen(e, 'white')
-        setActiveElement(gameState[id]);
+        setActiveElement(id);
       } else if (e.target.className.includes('figure_whiteCastle')) {
         handleCastle(e, 'white')
-        setActiveElement(gameState[id]);
+        setActiveElement(id);
       } else if (e.target.className.includes('figure_whiteKing')) {
         handleKing(e, 'white')
-        setActiveElement(gameState[id]);
+        setActiveElement(id);
       } else if (e.target.className.includes('figure_whiteHorse')) {
         handleHorse(e, 'white')
-        setActiveElement(gameState[id]);
+        setActiveElement(id);
       }
       else if (e.target.className.includes('figure_whiteOfficer')) {
         handleOfficer(e, 'white')
-        setActiveElement(gameState[id]);
+        setActiveElement(id);
       }
     } else {
       if (e.target.className.includes('figure_blackPawn')) {
         handleBlackPawn(e)
-        setActiveElement(gameState[id]);
+        setActiveElement(id);
       } else if (e.target.className.includes('figure_blackQueen')) {
         handleQueen(e, 'black')
-        setActiveElement(gameState[id]);
+        setActiveElement(id);
       } else if (e.target.className.includes('figure_blackCastle')) {
         handleCastle(e, 'black')
-        setActiveElement(gameState[id]);
+        setActiveElement(id);
       } else if (e.target.className.includes('figure_blackOfficer')) {
         handleOfficer(e, 'black')
-        setActiveElement(gameState[id]);
+        setActiveElement(id);
       } else if (e.target.className.includes('figure_blackKing')) {
         handleKing(e, 'black')
-        setActiveElement(gameState[id]);
+        setActiveElement(id);
       } else if (e.target.className.includes('figure_blackHorse')) {
         handleHorse(e, 'black')
-        setActiveElement(gameState[id]);
+        setActiveElement(id);
       } 
     }
     
