@@ -14,7 +14,12 @@ export default function handleBlackPawn(e) {
     canGoIds.push(nextStep);
   }
 
-  if (data[`${doubleStep}`] && !data[`${doubleStep}`].figure && cell[0] == 7) {
+  if (
+    data[`${doubleStep}`] &&
+    !data[`${doubleStep}`].figure &&
+    !data[`${nextStep}`]?.figure &&
+    cell[0] == 7
+  ) {
     canGoIds.push(doubleStep);
   }
 

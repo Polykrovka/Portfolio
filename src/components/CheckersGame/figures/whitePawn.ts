@@ -14,7 +14,12 @@ export default function handleWhitePawn(e) {
     canGoIds.push(nextStep);
   }
 
-  if (data[`${doubleStep}`] && !data[`${doubleStep}`].figure && cell[0] == 2) {
+  if (
+    data[`${doubleStep}`] &&
+    !data[`${doubleStep}`].figure &&
+    !data[`${nextStep}`]?.figure &&
+    cell[0] == 2
+  ) {
     canGoIds.push(doubleStep);
   }
 
