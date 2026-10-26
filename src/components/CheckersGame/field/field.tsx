@@ -1,7 +1,7 @@
 'use client'; 
 import styles from './field.module.scss'
 import { useState, type Dispatch, type SetStateAction } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import handleBlackPawn from '../figures/blackPawn';
 import handleWhitePawn from '../figures/whitePawn';
 import handleQueen from '../figures/queen';
@@ -9,7 +9,7 @@ import handleCastle from '../figures/castle';
 import handleOfficer from '../figures/officer';
 import handleKing from '../figures/king';
 import handleHorse from '../figures/horse';
-import type { RootState } from '../data';
+import { clearActive, removeCanGo, type RootState } from '../data';
 
 type FieldProps = {
   isWhiteTurn: boolean;
@@ -20,16 +20,11 @@ export default function Field(props: FieldProps) {
   const { isWhiteTurn, setIsWhiteTurn } = props;
   console.log(isWhiteTurn)
 
+  const dispatch = useDispatch();
   const gameState = useSelector((state: RootState) => state.gameState);
   
   const [activeElement, setActiveElement] = useState();
   const cellKeys = Object.keys(gameState);
-
-  function removeCanGo() {
-    for (let i of cellKeys) {
-      gameState[i].canGo = false;
-    }
-  }
 
   
   function handleClick(e) {
@@ -40,20 +35,17 @@ export default function Field(props: FieldProps) {
       gameState[id].figureColor = activeElement.figureColor
       activeElement.figure = null;
       activeElement.figureColor = null;
-      removeCanGo()
-
-      if (activeElement) {
-        activeElement.isActive = false;
-        setActiveElement(null);
-      }
+      dispatch(clearActive())
+      dispatch(removeCanGo())
+      setActiveElement(null);
       setIsWhiteTurn(!isWhiteTurn);
       return
     }
 
     if (activeElement) {
-      activeElement.isActive = false;
       setActiveElement(null);
-      removeCanGo()
+      dispatch(clearActive())
+      dispatch(removeCanGo())
     }
     
     if (isWhiteTurn) {

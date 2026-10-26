@@ -61,10 +61,21 @@ const gameStateSlice = createSlice({
     resetGameState() {
       return createInitialState();
     },
+    removeCanGo(state) {
+      for (const key of Object.keys(state)) {
+        state[key].canGo = false;
+      }
+    },
+    clearActive(state) {
+      const activeKey = Object.keys(state).find((key) => state[key].isActive);
+      if (activeKey) {
+        state[activeKey].isActive = false;
+      }
+    },
   },
 });
 
-export const { resetGameState } = gameStateSlice.actions;
+export const { resetGameState, removeCanGo, clearActive } = gameStateSlice.actions;
 
 export const store = configureStore({
   reducer: {
