@@ -79,10 +79,18 @@ const gameStateSlice = createSlice({
       state[from].figure = null;
       state[from].figureColor = null;
     },
+    setActive(state, action: PayloadAction<string>) {
+      state[action.payload].isActive = true;
+    },
+    setCanGo(state, action: PayloadAction<string[]>) {
+      for (const id of action.payload) {
+        state[id].canGo = true;
+      }
+    },
   },
 });
 
-export const { resetGameState, removeCanGo, clearActive, movePiece } = gameStateSlice.actions;
+export const { resetGameState, removeCanGo, clearActive, movePiece, setActive, setCanGo } = gameStateSlice.actions;
 
 export const store = configureStore({
   reducer: {

@@ -1,29 +1,32 @@
-import { store } from "../data";
+import { setActive, setCanGo, store } from "../data";
 
 export default function handleBlackPawn(e) {
   const data = store.getState().gameState;
   const cell = e.target.parentElement.id;
-  data[cell].isActive = true;
   const nextStep = `${cell[0] - 1}${cell[1]}`
   const doubleStep = `${cell[0] - 2}${cell[1]}`
   const canFightLeft = `${cell[0] - 1}${cell[1] - 1}`
   const canFightRight = `${cell[0] - 1}${+cell[1] + 1}`
 
+  const canGoIds: string[] = [];
 
   if (data[`${nextStep}`] && !data[`${nextStep}`].figure) {
-    data[`${nextStep}`].canGo = true;
+    canGoIds.push(nextStep);
   }
 
   if (data[`${doubleStep}`] && !data[`${doubleStep}`].figure && cell[0] == 7) {
-    data[`${doubleStep}`].canGo = true;
+    canGoIds.push(doubleStep);
   }
 
-  console.log(canFightLeft, data[`${canFightLeft}`])
   if (data[`${canFightLeft}`] && data[`${canFightLeft}`].figureColor === 'white') {
-    data[`${canFightLeft}`].canGo = true;
+    canGoIds.push(canFightLeft);
   }
-  // console.log(canFightRight)
   if (data[`${canFightRight}`] && data[`${canFightRight}`].figureColor === 'white') {
-    data[`${canFightRight}`].canGo = true;
+    canGoIds.push(canFightRight);
+  }
+
+  store.dispatch(setActive(cell));
+  if (canGoIds.length) {
+    store.dispatch(setCanGo(canGoIds));
   }
 }
