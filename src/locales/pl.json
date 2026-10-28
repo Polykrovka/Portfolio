@@ -27,7 +27,18 @@
     "checkersSideWhite": "białe",
     "checkersSideBlack": "czarne",
     "checkersFullscreen": "Pełny ekran",
-    "checkersExitFullscreen": "Wyjdź"
+    "checkersExitFullscreen": "Wyjdź",
+    "checkersCreateRoom": "Utwórz pokój",
+    "checkersJoinRoom": "Dołącz",
+    "checkersJoinPlaceholder": "Kod pokoju",
+    "checkersRoomCode": "Kod: {{code}}",
+    "checkersPeerStatus": {
+      "idle": "Brak połączenia",
+      "hosting": "Czekamy na przeciwnika…",
+      "connecting": "Łączenie…",
+      "connected": "Połączono",
+      "error": "Błąd połączenia"
+    }
   },
   "personal": {
     "title": "Yeah, it's me!"

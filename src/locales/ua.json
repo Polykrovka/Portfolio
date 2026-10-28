@@ -27,7 +27,18 @@
     "checkersSideWhite": "білі",
     "checkersSideBlack": "чорні",
     "checkersFullscreen": "Повний екран",
-    "checkersExitFullscreen": "Вийти"
+    "checkersExitFullscreen": "Вийти",
+    "checkersCreateRoom": "Створити кімнату",
+    "checkersJoinRoom": "Увійти",
+    "checkersJoinPlaceholder": "Код кімнати",
+    "checkersRoomCode": "Код: {{code}}",
+    "checkersPeerStatus": {
+      "idle": "Немає з'єднання",
+      "hosting": "Чекаємо суперника…",
+      "connecting": "Підключення…",
+      "connected": "Підключено",
+      "error": "Помилка з'єднання"
+    }
   },
   "personal": {
     "title": "Yeah, it's me!"

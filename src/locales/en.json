@@ -27,7 +27,18 @@
     "checkersSideWhite": "white",
     "checkersSideBlack": "black",
     "checkersFullscreen": "Fullscreen",
-    "checkersExitFullscreen": "Exit fullscreen"
+    "checkersExitFullscreen": "Exit fullscreen",
+    "checkersCreateRoom": "Create room",
+    "checkersJoinRoom": "Join",
+    "checkersJoinPlaceholder": "Room code",
+    "checkersRoomCode": "Code: {{code}}",
+    "checkersPeerStatus": {
+      "idle": "Not connected",
+      "hosting": "Waiting for opponent…",
+      "connecting": "Connecting…",
+      "connected": "Connected",
+      "error": "Connection error"
+    }
   },
   "personal": {
     "title": "Yeah, it's me!"
