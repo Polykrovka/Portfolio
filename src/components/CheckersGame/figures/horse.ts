@@ -1,21 +1,18 @@
-import { store } from "../data";
+import { setActive, setCanGo, store } from "../data";
 
 export default function handleHorse(e, color) {
   const data = store.getState().gameState;
   const colorAganst = color === 'black' ? 'white' : 'black';
   const cell = e.target.parentElement.id;
-  data[cell].isActive = true;
+  const canGoIds: string[] = [];
 
-  function ifOk(cell) {
-
-    if (data[cell]) {
-      if (!data[cell].figure) {
-        data[cell].canGo = true;
+  function ifOk(cellId) {
+    if (data[cellId]) {
+      if (!data[cellId].figure) {
+        canGoIds.push(cellId);
+      } else if (data[cellId].figureColor === colorAganst) {
+        canGoIds.push(cellId);
       }
-      else if (data[cell].figureColor === colorAganst) {
-        data[cell].canGo = true;
-      }
-
     }
   }
 
@@ -27,4 +24,9 @@ export default function handleHorse(e, color) {
   ifOk(`${+cell[0] + 1}${+cell[1] - 2}`)
   ifOk(`${+cell[0] - 1}${+cell[1] + 2}`)
   ifOk(`${+cell[0] - 1}${+cell[1] - 2}`)
+
+  store.dispatch(setActive(cell));
+  if (canGoIds.length) {
+    store.dispatch(setCanGo(canGoIds));
+  }
 }
