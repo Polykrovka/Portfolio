@@ -1,28 +1,25 @@
-import { store } from "../data";
+import { setActive, setCanGo, store } from "../data";
 
 export default function handleCastle(e, color) {
   const data = store.getState().gameState;
   const colorAganst = color === 'black' ? 'white' : 'black';
   const cell = e.target.parentElement.id;
-  data[cell].isActive = true;
+  const canGoIds: string[] = [];
 
-  function ifOk(cell, key) {
+  function ifOk(cellId, key) {
     if (!keys[key]) {
       return;
     }
 
-    if (data[cell]) {
-      if (!data[cell].figure) {
-        data[cell].canGo = true;
-      }
-      else if (data[cell].figureColor === color) {
+    if (data[cellId]) {
+      if (!data[cellId].figure) {
+        canGoIds.push(cellId);
+      } else if (data[cellId].figureColor === color) {
+        keys[key] = false;
+      } else if (data[cellId].figureColor === colorAganst) {
+        canGoIds.push(cellId);
         keys[key] = false;
       }
-      else if (data[cell].figureColor === colorAganst) {
-        data[cell].canGo = true;
-        keys[key] = false;
-      }
-
     }
   }
 
@@ -32,5 +29,10 @@ export default function handleCastle(e, color) {
     ifOk(`${+cell[0]}${+cell[1] + i}`, 'k2')
     ifOk(`${+cell[0]}${+cell[1] - i}`, 'k3')
     ifOk(`${+cell[0] - i}${+cell[1]}`, 'k4')
+  }
+
+  store.dispatch(setActive(cell));
+  if (canGoIds.length) {
+    store.dispatch(setCanGo(canGoIds));
   }
 }
