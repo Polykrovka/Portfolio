@@ -25,7 +25,9 @@
     "frontendChessRedux": "Таксама ў праекце выкарыстоўваў Redux: камерцыйных задач з ім у мяне не было, а ў многіх праектах ён патрэбны — так я паказваю, што ўмею з ім працаваць.",
     "checkersTurn": "Зараз ход: {{side}}",
     "checkersSideWhite": "белыя",
-    "checkersSideBlack": "чорныя"
+    "checkersSideBlack": "чорныя",
+    "checkersFullscreen": "Поўны экран",
+    "checkersExitFullscreen": "Выйсці"
   },
   "personal": {
     "title": "Yeah, it's me!"

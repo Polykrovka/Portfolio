@@ -1,4 +1,8 @@
 .turn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: var(--mantine-spacing-md);
   margin-bottom: var(--mantine-spacing-md);
   border-radius: var(--mantine-radius-md);
@@ -17,4 +21,41 @@
   font-weight: 600;
   text-align: center;
   color: light-dark(#0F172A, var(--mantine-color-white));
+}
+
+.turnActions {
+  position: absolute;
+  right: var(--mantine-spacing-md);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.board {
+  width: 100%;
+}
+
+.fullscreen {
+  position: fixed;
+  inset: 0;
+  z-index: 400;
+  display: flex;
+  flex-direction: column;
+  padding: var(--mantine-spacing-md);
+  background-color: var(--mantine-color-body);
+  outline: none;
+  overflow: auto;
+  overscroll-behavior: none;
+}
+
+.fullscreen .board {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+}
+
+.fullscreen .board > * {
+  width: min(100%, calc(100vh - 8rem));
+  max-width: 100%;
 }
