@@ -32,6 +32,13 @@
     "checkersJoinRoom": "Увайсці",
     "checkersJoinPlaceholder": "Код пакоя",
     "checkersRoomCode": "Код: {{code}}",
+    "checkersCopyCode": "Скапіяваць код",
+    "checkersModeTitle": "Як хочаце згуляць?",
+    "checkersModeSolo": "Аднаму",
+    "checkersModeMultiplayer": "Мультыплэер",
+    "checkersModeComputer": "З камп'ютарам",
+    "checkersModeBack": "Назад",
+    "checkersComputerSoon": "Хутка.",
     "checkersPeerStatus": {
       "idle": "Няма злучэння",
       "hosting": "Чакаем суперніка…",

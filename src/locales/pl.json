@@ -32,6 +32,13 @@
     "checkersJoinRoom": "Dołącz",
     "checkersJoinPlaceholder": "Kod pokoju",
     "checkersRoomCode": "Kod: {{code}}",
+    "checkersCopyCode": "Kopiuj kod",
+    "checkersModeTitle": "Jak chcesz zagrać?",
+    "checkersModeSolo": "Samemu",
+    "checkersModeMultiplayer": "Multiplayer",
+    "checkersModeComputer": "Z komputerem",
+    "checkersModeBack": "Wstecz",
+    "checkersComputerSoon": "Wkrótce.",
     "checkersPeerStatus": {
       "idle": "Brak połączenia",
       "hosting": "Czekamy na przeciwnika…",

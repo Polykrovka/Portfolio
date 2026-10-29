@@ -15,6 +15,9 @@ export function usePeerConnection() {
     connectionRef.current = null;
     peerRef.current?.destroy();
     peerRef.current = null;
+    setStatus('idle');
+    setRoomCode(null);
+    setError(null);
   }, []);
 
   useEffect(() => () => cleanup(), [cleanup]);
@@ -93,5 +96,6 @@ export function usePeerConnection() {
     connectionRef,
     createRoom,
     joinRoom,
+    cleanup,
   };
 }
