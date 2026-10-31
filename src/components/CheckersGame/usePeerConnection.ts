@@ -11,6 +11,7 @@ export type PeerStateMessage = {
 export function usePeerConnection() {
   const peerRef = useRef<Peer | null>(null);
   const connectionRef = useRef<DataConnection | null>(null);
+  const onDataRef = useRef<((data: unknown) => void) | null>(null);
   const [status, setStatus] = useState<PeerStatus>('idle');
   const [roomCode, setRoomCode] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -33,6 +34,10 @@ export function usePeerConnection() {
     connection.on('open', () => {
       setStatus('connected');
       setError(null);
+    });
+
+    connection.on('data', (data) => {
+      onDataRef.current?.(data);
     });
 
     connection.on('close', () => {
@@ -99,6 +104,10 @@ export function usePeerConnection() {
     connectionRef.current?.send(message);
   }, []);
 
+  const setOnData = useCallback((handler: ((data: unknown) => void) | null) => {
+    onDataRef.current = handler;
+  }, []);
+
   return {
     status,
     roomCode,
@@ -108,5 +117,6 @@ export function usePeerConnection() {
     joinRoom,
     cleanup,
     sendGameState,
+    setOnData,
   };
 }

@@ -1,19 +1,31 @@
 import { useEffect, useRef, useState } from 'react';
 import { Button, Text } from '@mantine/core';
+import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import Field from './field/field';
 import { ModeOverlay } from './ModeOverlay';
-import { usePeerConnection } from './usePeerConnection';
+import { replaceGameState } from './data';
+import { usePeerConnection, type PeerStateMessage } from './usePeerConnection';
 import actionButtonClasses from '../../styles/actionButton.module.css';
 import styles from './CheckersGame.module.css';
 
 export function CheckersGame() {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
   const [isWhiteTurn, setIsWhiteTurn] = useState(true);
   const [fullscreen, setFullscreen] = useState(false);
   const [modeOverlayOpen, setModeOverlayOpen] = useState(true);
   const rootRef = useRef<HTMLDivElement>(null);
-  const { status, roomCode, error, createRoom, joinRoom, cleanup, sendGameState } = usePeerConnection();
+  const {
+    status,
+    roomCode,
+    error,
+    createRoom,
+    joinRoom,
+    cleanup,
+    sendGameState,
+    setOnData,
+  } = usePeerConnection();
   const side = t(isWhiteTurn ? 'home.checkersSideWhite' : 'home.checkersSideBlack');
 
   useEffect(() => {
@@ -21,6 +33,20 @@ export function CheckersGame() {
       rootRef.current?.focus();
     }
   }, [fullscreen]);
+
+  useEffect(() => {
+    setOnData((data) => {
+      const message = data as PeerStateMessage;
+      if (!message || message.type !== 'state' || !message.gameState) {
+        return;
+      }
+
+      dispatch(replaceGameState(message.gameState));
+      setIsWhiteTurn((current) => !current);
+    });
+
+    return () => setOnData(null);
+  }, [dispatch, setOnData]);
 
   return (
     <div

@@ -87,10 +87,21 @@ const gameStateSlice = createSlice({
         state[id].canGo = true;
       }
     },
+    replaceGameState(_state, action: PayloadAction<Record<string, any>>) {
+      return action.payload;
+    },
   },
 });
 
-export const { resetGameState, removeCanGo, clearActive, movePiece, setActive, setCanGo } = gameStateSlice.actions;
+export const {
+  resetGameState,
+  removeCanGo,
+  clearActive,
+  movePiece,
+  setActive,
+  setCanGo,
+  replaceGameState,
+} = gameStateSlice.actions;
 
 export const store = configureStore({
   reducer: {
