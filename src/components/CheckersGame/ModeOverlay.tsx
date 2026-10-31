@@ -3,18 +3,32 @@ import { Button, Text, TextInput } from '@mantine/core';
 import { useTranslation } from 'react-i18next';
 import actionButtonClasses from '../../styles/actionButton.module.css';
 import styles from './CheckersGame.module.css';
-import { usePeerConnection } from './usePeerConnection';
+import type { PeerStatus } from './usePeerConnection';
 
 type OverlayScreen = 'menu' | 'multiplayer' | 'computer';
 
 type ModeOverlayProps = {
+  status: PeerStatus;
+  roomCode: string | null;
+  error: string | null;
   onSolo: () => void;
+  onCreateRoom: () => void;
+  onJoinRoom: (code: string) => void;
+  onCleanup: () => void;
   onMultiplayerConnected: () => void;
 };
 
-export function ModeOverlay({ onSolo, onMultiplayerConnected }: ModeOverlayProps) {
+export function ModeOverlay({
+  status,
+  roomCode,
+  error,
+  onSolo,
+  onCreateRoom,
+  onJoinRoom,
+  onCleanup,
+  onMultiplayerConnected,
+}: ModeOverlayProps) {
   const { t } = useTranslation();
-  const { status, roomCode, error, createRoom, joinRoom, cleanup } = usePeerConnection();
   const [screen, setScreen] = useState<OverlayScreen>('menu');
   const [joinCode, setJoinCode] = useState('');
 
@@ -26,11 +40,11 @@ export function ModeOverlay({ onSolo, onMultiplayerConnected }: ModeOverlayProps
 
   const openMultiplayer = () => {
     setScreen('multiplayer');
-    createRoom();
+    onCreateRoom();
   };
 
   const goBackToMenu = () => {
-    cleanup();
+    onCleanup();
     setJoinCode('');
     setScreen('menu');
   };
@@ -78,7 +92,7 @@ export function ModeOverlay({ onSolo, onMultiplayerConnected }: ModeOverlayProps
           />
           <Button
             className={actionButtonClasses.actionButton}
-            onClick={() => joinRoom(joinCode)}
+            onClick={() => onJoinRoom(joinCode)}
             disabled={!joinCode.trim()}
           >
             {t('home.checkersJoinRoom')}

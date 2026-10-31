@@ -3,6 +3,7 @@ import { Button, Text } from '@mantine/core';
 import { useTranslation } from 'react-i18next';
 import Field from './field/field';
 import { ModeOverlay } from './ModeOverlay';
+import { usePeerConnection } from './usePeerConnection';
 import actionButtonClasses from '../../styles/actionButton.module.css';
 import styles from './CheckersGame.module.css';
 
@@ -12,6 +13,7 @@ export function CheckersGame() {
   const [fullscreen, setFullscreen] = useState(false);
   const [modeOverlayOpen, setModeOverlayOpen] = useState(true);
   const rootRef = useRef<HTMLDivElement>(null);
+  const { status, roomCode, error, createRoom, joinRoom, cleanup } = usePeerConnection();
   const side = t(isWhiteTurn ? 'home.checkersSideWhite' : 'home.checkersSideBlack');
 
   useEffect(() => {
@@ -48,7 +50,16 @@ export function CheckersGame() {
         <Field isWhiteTurn={isWhiteTurn} setIsWhiteTurn={setIsWhiteTurn} />
         {modeOverlayOpen && (
           <ModeOverlay
-            onSolo={() => setModeOverlayOpen(false)}
+            status={status}
+            roomCode={roomCode}
+            error={error}
+            onSolo={() => {
+              cleanup();
+              setModeOverlayOpen(false);
+            }}
+            onCreateRoom={createRoom}
+            onJoinRoom={joinRoom}
+            onCleanup={cleanup}
             onMultiplayerConnected={() => setModeOverlayOpen(false)}
           />
         )}
