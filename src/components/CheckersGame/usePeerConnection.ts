@@ -3,6 +3,11 @@ import { Peer, type DataConnection } from 'peerjs';
 
 export type PeerStatus = 'idle' | 'hosting' | 'connecting' | 'connected' | 'error';
 
+export type PeerStateMessage = {
+  type: 'state';
+  gameState: Record<string, unknown>;
+};
+
 export function usePeerConnection() {
   const peerRef = useRef<Peer | null>(null);
   const connectionRef = useRef<DataConnection | null>(null);
@@ -89,6 +94,11 @@ export function usePeerConnection() {
     });
   }, [bindConnection, cleanup]);
 
+  const sendGameState = useCallback((gameState: Record<string, unknown>) => {
+    const message: PeerStateMessage = { type: 'state', gameState };
+    connectionRef.current?.send(message);
+  }, []);
+
   return {
     status,
     roomCode,
@@ -97,5 +107,6 @@ export function usePeerConnection() {
     createRoom,
     joinRoom,
     cleanup,
+    sendGameState,
   };
 }

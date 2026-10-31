@@ -13,7 +13,7 @@ export function CheckersGame() {
   const [fullscreen, setFullscreen] = useState(false);
   const [modeOverlayOpen, setModeOverlayOpen] = useState(true);
   const rootRef = useRef<HTMLDivElement>(null);
-  const { status, roomCode, error, createRoom, joinRoom, cleanup } = usePeerConnection();
+  const { status, roomCode, error, createRoom, joinRoom, cleanup, sendGameState } = usePeerConnection();
   const side = t(isWhiteTurn ? 'home.checkersSideWhite' : 'home.checkersSideBlack');
 
   useEffect(() => {
@@ -47,7 +47,11 @@ export function CheckersGame() {
         </div>
       </div>
       <div className={styles.board}>
-        <Field isWhiteTurn={isWhiteTurn} setIsWhiteTurn={setIsWhiteTurn} />
+        <Field
+          isWhiteTurn={isWhiteTurn}
+          setIsWhiteTurn={setIsWhiteTurn}
+          onLocalMove={status === 'connected' ? sendGameState : undefined}
+        />
         {modeOverlayOpen && (
           <ModeOverlay
             status={status}

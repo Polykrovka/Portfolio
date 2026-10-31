@@ -9,15 +9,16 @@ import handleCastle from '../figures/castle';
 import handleOfficer from '../figures/officer';
 import handleKing from '../figures/king';
 import handleHorse from '../figures/horse';
-import { clearActive, movePiece, removeCanGo, type RootState } from '../data';
+import { clearActive, movePiece, removeCanGo, store, type RootState } from '../data';
 
 type FieldProps = {
   isWhiteTurn: boolean;
   setIsWhiteTurn: Dispatch<SetStateAction<boolean>>;
+  onLocalMove?: (gameState: RootState['gameState']) => void;
 };
 
 export default function Field(props: FieldProps) {
-  const { isWhiteTurn, setIsWhiteTurn } = props;
+  const { isWhiteTurn, setIsWhiteTurn, onLocalMove } = props;
   console.log(isWhiteTurn)
 
   const dispatch = useDispatch();
@@ -34,6 +35,7 @@ export default function Field(props: FieldProps) {
       dispatch(movePiece({ from: activeElement, to: id }))
       dispatch(clearActive())
       dispatch(removeCanGo())
+      onLocalMove?.(store.getState().gameState);
       setActiveElement(null);
       setIsWhiteTurn(!isWhiteTurn);
       return
