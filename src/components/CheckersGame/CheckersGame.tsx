@@ -5,7 +5,11 @@ import { useTranslation } from 'react-i18next';
 import Field from './field/field';
 import { ModeOverlay } from './ModeOverlay';
 import { replaceGameState } from './data';
-import { usePeerConnection, type PeerStateMessage } from './usePeerConnection';
+import {
+  usePeerConnection,
+  type PeerMessage,
+  type PieceColor,
+} from './usePeerConnection';
 import actionButtonClasses from '../../styles/actionButton.module.css';
 import styles from './CheckersGame.module.css';
 
@@ -15,6 +19,7 @@ export function CheckersGame() {
   const [isWhiteTurn, setIsWhiteTurn] = useState(true);
   const [fullscreen, setFullscreen] = useState(false);
   const [modeOverlayOpen, setModeOverlayOpen] = useState(true);
+  const [localColor, setLocalColor] = useState<PieceColor | null>(null);
   const rootRef = useRef<HTMLDivElement>(null);
   const {
     status,
@@ -36,13 +41,20 @@ export function CheckersGame() {
 
   useEffect(() => {
     setOnData((data) => {
-      const message = data as PeerStateMessage;
-      if (!message || message.type !== 'state' || !message.gameState) {
+      const message = data as PeerMessage;
+      if (!message || !message.type) {
         return;
       }
 
-      dispatch(replaceGameState(message.gameState));
-      setIsWhiteTurn((current) => !current);
+      if (message.type === 'color') {
+        setLocalColor(message.hostColor === 'white' ? 'black' : 'white');
+        return;
+      }
+
+      if (message.type === 'state' && message.gameState) {
+        dispatch(replaceGameState(message.gameState));
+        setIsWhiteTurn((current) => !current);
+      }
     });
 
     return () => setOnData(null);
@@ -76,6 +88,7 @@ export function CheckersGame() {
         <Field
           isWhiteTurn={isWhiteTurn}
           setIsWhiteTurn={setIsWhiteTurn}
+          localColor={status === 'connected' ? localColor : null}
           onLocalMove={status === 'connected' ? sendGameState : undefined}
         />
         {modeOverlayOpen && (
@@ -85,11 +98,18 @@ export function CheckersGame() {
             error={error}
             onSolo={() => {
               cleanup();
+              setLocalColor(null);
               setModeOverlayOpen(false);
             }}
-            onCreateRoom={createRoom}
+            onCreateRoom={(hostColor) => {
+              setLocalColor(hostColor);
+              createRoom(hostColor);
+            }}
             onJoinRoom={joinRoom}
-            onCleanup={cleanup}
+            onCleanup={() => {
+              cleanup();
+              setLocalColor(null);
+            }}
             onMultiplayerConnected={() => setModeOverlayOpen(false)}
           />
         )}

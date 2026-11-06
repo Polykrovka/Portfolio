@@ -14,11 +14,12 @@ import { clearActive, movePiece, removeCanGo, store, type RootState } from '../d
 type FieldProps = {
   isWhiteTurn: boolean;
   setIsWhiteTurn: Dispatch<SetStateAction<boolean>>;
+  localColor?: 'white' | 'black' | null;
   onLocalMove?: (gameState: RootState['gameState']) => void;
 };
 
 export default function Field(props: FieldProps) {
-  const { isWhiteTurn, setIsWhiteTurn, onLocalMove } = props;
+  const { isWhiteTurn, setIsWhiteTurn, localColor = null, onLocalMove } = props;
   console.log(isWhiteTurn)
 
   const dispatch = useDispatch();
@@ -26,12 +27,19 @@ export default function Field(props: FieldProps) {
   
   const [activeElement, setActiveElement] = useState();
   const cellKeys = Object.keys(gameState);
+  const isMyTurn =
+    localColor === null ||
+    (localColor === 'white' && isWhiteTurn) ||
+    (localColor === 'black' && !isWhiteTurn);
 
   
   function handleClick(e) {
     const id = e.target.id || e.target.parentElement.id;
 
     if (gameState[id] && gameState[id].canGo) {
+      if (!isMyTurn) {
+        return;
+      }
       dispatch(movePiece({ from: activeElement, to: id }))
       dispatch(clearActive())
       dispatch(removeCanGo())
@@ -39,6 +47,10 @@ export default function Field(props: FieldProps) {
       setActiveElement(null);
       setIsWhiteTurn(!isWhiteTurn);
       return
+    }
+
+    if (!isMyTurn) {
+      return;
     }
 
     if (activeElement) {

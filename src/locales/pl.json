@@ -33,6 +33,7 @@
     "checkersJoinPlaceholder": "Kod pokoju",
     "checkersRoomCode": "Kod: {{code}}",
     "checkersCopyCode": "Kopiuj kod",
+    "checkersPickColor": "Wybierz kolor (host)",
     "checkersModeTitle": "Jak chcesz zagrać?",
     "checkersModeSolo": "Samemu",
     "checkersModeMultiplayer": "Multiplayer",

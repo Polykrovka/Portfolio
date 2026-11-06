@@ -3,7 +3,7 @@ import { Button, Text, TextInput } from '@mantine/core';
 import { useTranslation } from 'react-i18next';
 import actionButtonClasses from '../../styles/actionButton.module.css';
 import styles from './CheckersGame.module.css';
-import type { PeerStatus } from './usePeerConnection';
+import type { PeerStatus, PieceColor } from './usePeerConnection';
 
 type OverlayScreen = 'menu' | 'multiplayer' | 'computer';
 
@@ -12,7 +12,7 @@ type ModeOverlayProps = {
   roomCode: string | null;
   error: string | null;
   onSolo: () => void;
-  onCreateRoom: () => void;
+  onCreateRoom: (hostColor: PieceColor) => void;
   onJoinRoom: (code: string) => void;
   onCleanup: () => void;
   onMultiplayerConnected: () => void;
@@ -40,7 +40,6 @@ export function ModeOverlay({
 
   const openMultiplayer = () => {
     setScreen('multiplayer');
-    onCreateRoom();
   };
 
   const goBackToMenu = () => {
@@ -76,6 +75,23 @@ export function ModeOverlay({
       {screen === 'multiplayer' && (
         <div className={styles.modeCard}>
           <Text className={styles.modeTitle}>{t('home.checkersModeMultiplayer')}</Text>
+          {status === 'idle' && (
+            <>
+              <Text className={styles.modeMeta}>{t('home.checkersPickColor')}</Text>
+              <Button
+                className={actionButtonClasses.actionButton}
+                onClick={() => onCreateRoom('white')}
+              >
+                {t('home.checkersSideWhite')}
+              </Button>
+              <Button
+                className={actionButtonClasses.actionButton}
+                onClick={() => onCreateRoom('black')}
+              >
+                {t('home.checkersSideBlack')}
+              </Button>
+            </>
+          )}
           <Text className={styles.modeMeta}>{t(`home.checkersPeerStatus.${status}`)}</Text>
           {roomCode && (
             <>
