@@ -72,6 +72,11 @@ export function CheckersGame() {
       }}
     >
       <div className={styles.turn}>
+        {status === 'connected' && localColor && (
+          <Text className={styles.turnColor}>
+            {t(localColor === 'white' ? 'home.checkersYouAreWhite' : 'home.checkersYouAreBlack')}
+          </Text>
+        )}
         <Text className={styles.turnText}>
           {t('home.checkersTurn', { side })}
         </Text>

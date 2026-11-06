@@ -23,6 +23,17 @@
   color: light-dark(#0F172A, var(--mantine-color-white));
 }
 
+.turnColor {
+  position: absolute;
+  left: var(--mantine-spacing-md);
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: 'Montserrat', sans-serif;
+  font-size: rem(22px);
+  font-weight: 600;
+  color: light-dark(#0F172A, var(--mantine-color-white));
+}
+
 .turnActions {
   position: absolute;
   right: var(--mantine-spacing-md);

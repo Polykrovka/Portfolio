@@ -24,6 +24,8 @@
     "frontendChess": "Kiedyś przez jedną noc próbowałem napisać w Next.js grę w szachy — repozytorium <repo>OneNightChess</repo>. Dla zabawy i dlatego, że zawsze chciałem zrobić grę. To jedna z najwcześniejszych prób. Już działała, ale nie była dokończona. Na tej stronie wziąłem stamtąd kod i doprowadziłem go do ładu (praca z legacy 🙂). Zasadniczo logiki nie zmieniałem — tylko dokończyłem i dodałem parę ficzerów w stylu:.",
     "frontendChessRedux": "W projekcie użyłem też Redux: nie miałem komercyjnych zadań z nim, a w wielu projektach jest potrzebny — tak pokazuję, że potrafię z nim pracować.",
     "checkersTurn": "Teraz ruch: {{side}}",
+    "checkersYouAreWhite": "Grasz: białymi",
+    "checkersYouAreBlack": "Grasz: czarnymi",
     "checkersSideWhite": "białe",
     "checkersSideBlack": "czarne",
     "checkersFullscreen": "Pełny ekran",
