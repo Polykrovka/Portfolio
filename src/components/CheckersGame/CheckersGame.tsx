@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import { Button, Text } from '@mantine/core';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import Field from './field/field';
 import { ModeOverlay } from './ModeOverlay';
-import { replaceGameState } from './data';
+import { replaceGameState, setIsWhiteTurn, type RootState } from './data';
 import {
   usePeerConnection,
   type PeerMessage,
@@ -16,7 +16,7 @@ import styles from './CheckersGame.module.css';
 export function CheckersGame() {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const [isWhiteTurn, setIsWhiteTurn] = useState(true);
+  const isWhiteTurn = useSelector((state: RootState) => state.isWhiteTurn);
   const [fullscreen, setFullscreen] = useState(false);
   const [modeOverlayOpen, setModeOverlayOpen] = useState(true);
   const [localColor, setLocalColor] = useState<PieceColor | null>(null);
@@ -53,7 +53,7 @@ export function CheckersGame() {
 
       if (message.type === 'state' && message.gameState) {
         dispatch(replaceGameState(message.gameState));
-        setIsWhiteTurn((current) => !current);
+        dispatch(setIsWhiteTurn(message.isWhiteTurn));
       }
     });
 
@@ -92,8 +92,6 @@ export function CheckersGame() {
       <div className={styles.board}>
         <div className={styles.boardStage}>
           <Field
-            isWhiteTurn={isWhiteTurn}
-            setIsWhiteTurn={setIsWhiteTurn}
             localColor={status === 'connected' ? localColor : null}
             onLocalMove={status === 'connected' ? sendGameState : undefined}
           />

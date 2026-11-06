@@ -1,6 +1,6 @@
 'use client'; 
 import styles from './field.module.scss'
-import { useState, type Dispatch, type SetStateAction } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import handleBlackPawn from '../figures/blackPawn';
 import handleWhitePawn from '../figures/whitePawn';
@@ -9,21 +9,18 @@ import handleCastle from '../figures/castle';
 import handleOfficer from '../figures/officer';
 import handleKing from '../figures/king';
 import handleHorse from '../figures/horse';
-import { clearActive, movePiece, removeCanGo, store, type RootState } from '../data';
+import { clearActive, movePiece, removeCanGo, setIsWhiteTurn, store, type RootState } from '../data';
 
 type FieldProps = {
-  isWhiteTurn: boolean;
-  setIsWhiteTurn: Dispatch<SetStateAction<boolean>>;
   localColor?: 'white' | 'black' | null;
-  onLocalMove?: (gameState: RootState['gameState']) => void;
+  onLocalMove?: (gameState: RootState['gameState'], isWhiteTurn: boolean) => void;
 };
 
 export default function Field(props: FieldProps) {
-  const { isWhiteTurn, setIsWhiteTurn, localColor = null, onLocalMove } = props;
-  console.log(isWhiteTurn)
-
+  const { localColor = null, onLocalMove } = props;
   const dispatch = useDispatch();
   const gameState = useSelector((state: RootState) => state.gameState);
+  const isWhiteTurn = useSelector((state: RootState) => state.isWhiteTurn);
   
   const [activeElement, setActiveElement] = useState();
   const cellKeys = Object.keys(gameState);
@@ -43,9 +40,10 @@ export default function Field(props: FieldProps) {
       dispatch(movePiece({ from: activeElement, to: id }))
       dispatch(clearActive())
       dispatch(removeCanGo())
-      onLocalMove?.(store.getState().gameState);
+      const nextIsWhiteTurn = !isWhiteTurn;
+      dispatch(setIsWhiteTurn(nextIsWhiteTurn));
+      onLocalMove?.(store.getState().gameState, nextIsWhiteTurn);
       setActiveElement(null);
-      setIsWhiteTurn(!isWhiteTurn);
       return
     }
 

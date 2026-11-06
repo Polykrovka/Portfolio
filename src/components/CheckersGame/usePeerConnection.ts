@@ -7,6 +7,7 @@ export type PieceColor = 'white' | 'black';
 export type PeerStateMessage = {
   type: 'state';
   gameState: Record<string, unknown>;
+  isWhiteTurn: boolean;
 };
 
 export type PeerColorMessage = {
@@ -114,8 +115,8 @@ export function usePeerConnection() {
     });
   }, [bindConnection, cleanup]);
 
-  const sendGameState = useCallback((gameState: Record<string, unknown>) => {
-    const message: PeerStateMessage = { type: 'state', gameState };
+  const sendGameState = useCallback((gameState: Record<string, unknown>, isWhiteTurn: boolean) => {
+    const message: PeerStateMessage = { type: 'state', gameState, isWhiteTurn };
     connectionRef.current?.send(message);
   }, []);
 

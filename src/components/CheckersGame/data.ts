@@ -93,6 +93,19 @@ const gameStateSlice = createSlice({
   },
 });
 
+const isWhiteTurnSlice = createSlice({
+  name: 'isWhiteTurn',
+  initialState: true as boolean,
+  reducers: {
+    setIsWhiteTurn(_state, action: PayloadAction<boolean>) {
+      return action.payload;
+    },
+    resetIsWhiteTurn() {
+      return true;
+    },
+  },
+});
+
 export const {
   resetGameState,
   removeCanGo,
@@ -103,9 +116,12 @@ export const {
   replaceGameState,
 } = gameStateSlice.actions;
 
+export const { setIsWhiteTurn, resetIsWhiteTurn } = isWhiteTurnSlice.actions;
+
 export const store = configureStore({
   reducer: {
     gameState: gameStateSlice.reducer,
+    isWhiteTurn: isWhiteTurnSlice.reducer,
   },
 });
 
