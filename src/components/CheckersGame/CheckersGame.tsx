@@ -85,34 +85,36 @@ export function CheckersGame() {
         </div>
       </div>
       <div className={styles.board}>
-        <Field
-          isWhiteTurn={isWhiteTurn}
-          setIsWhiteTurn={setIsWhiteTurn}
-          localColor={status === 'connected' ? localColor : null}
-          onLocalMove={status === 'connected' ? sendGameState : undefined}
-        />
-        {modeOverlayOpen && (
-          <ModeOverlay
-            status={status}
-            roomCode={roomCode}
-            error={error}
-            onSolo={() => {
-              cleanup();
-              setLocalColor(null);
-              setModeOverlayOpen(false);
-            }}
-            onCreateRoom={(hostColor) => {
-              setLocalColor(hostColor);
-              createRoom(hostColor);
-            }}
-            onJoinRoom={joinRoom}
-            onCleanup={() => {
-              cleanup();
-              setLocalColor(null);
-            }}
-            onMultiplayerConnected={() => setModeOverlayOpen(false)}
+        <div className={styles.boardStage}>
+          <Field
+            isWhiteTurn={isWhiteTurn}
+            setIsWhiteTurn={setIsWhiteTurn}
+            localColor={status === 'connected' ? localColor : null}
+            onLocalMove={status === 'connected' ? sendGameState : undefined}
           />
-        )}
+          {modeOverlayOpen && (
+            <ModeOverlay
+              status={status}
+              roomCode={roomCode}
+              error={error}
+              onSolo={() => {
+                cleanup();
+                setLocalColor(null);
+                setModeOverlayOpen(false);
+              }}
+              onCreateRoom={(hostColor) => {
+                setLocalColor(hostColor);
+                createRoom(hostColor);
+              }}
+              onJoinRoom={joinRoom}
+              onCleanup={() => {
+                cleanup();
+                setLocalColor(null);
+              }}
+              onMultiplayerConnected={() => setModeOverlayOpen(false)}
+            />
+          )}
+        </div>
       </div>
     </div>
   );

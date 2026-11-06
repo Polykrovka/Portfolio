@@ -31,6 +31,10 @@
 }
 
 .board {
+  width: 100%;
+}
+
+.boardStage {
   position: relative;
   width: 100%;
 }
@@ -110,7 +114,7 @@
   min-height: 0;
 }
 
-.fullscreen .board > * {
+.fullscreen .boardStage {
   width: min(100%, calc(100vh - 8rem));
   max-width: 100%;
 }
