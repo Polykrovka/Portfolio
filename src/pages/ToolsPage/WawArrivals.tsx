@@ -184,24 +184,24 @@ export function WawArrivals() {
             ))}
           </div>
 
-          <Title order={3} className={homeClasses.subtitle}>
-            {t('tools.nearbyTitle')}
-          </Title>
-          {analysis.nearby.length === 0 ? (
-            <Text className={homeClasses.text}>{t('tools.nearbyEmpty')}</Text>
-          ) : (
-            <ul className={styles.list}>
-              {analysis.nearby.map((flight) => (
-                <li
-                  key={`${flight.flight}-${flight.at.toISOString()}`}
-                  className={styles.listItem}
-                >
-                  <span className={styles.listTime}>{flight.timeLabel}</span>
-                  <span>{flight.flight}</span>
-                  <span>{flight.from}</span>
-                </li>
-              ))}
-            </ul>
+          {analysis.nearby.length > 0 && (
+            <>
+              <Title order={3} className={homeClasses.subtitle}>
+                {t('tools.nearbyTitle')}
+              </Title>
+              <ul className={styles.list}>
+                {analysis.nearby.map((flight) => (
+                  <li
+                    key={`${flight.flight}-${flight.at.toISOString()}`}
+                    className={styles.listItem}
+                  >
+                    <span className={styles.listTime}>{flight.timeLabel}</span>
+                    <span>{flight.flight}</span>
+                    <span>{flight.from}</span>
+                  </li>
+                ))}
+              </ul>
+            </>
           )}
         </>
       )}

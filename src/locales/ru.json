@@ -67,8 +67,7 @@
     "flightsError": "Не удалось загрузить рейсы",
     "flightsSavedAt": "Сохранено: {{time}}",
     "chartTitle": "Прилёты по получасам",
-    "nearbyTitle": "Рейсы за полчаса до и час после сейчас",
-    "nearbyEmpty": "В этом окне рейсов нет."
+    "nearbyTitle": "Рейсы за полчаса до и час после сейчас"
   },
   "sections": {
     "unity": "Unity",

@@ -67,8 +67,7 @@
     "flightsError": "Nie udało się wczytać lotów",
     "flightsSavedAt": "Zapisano: {{time}}",
     "chartTitle": "Przyloty co pół godziny",
-    "nearbyTitle": "Loty od pół godziny wstecz do godziny w przód",
-    "nearbyEmpty": "Brak lotów w tym oknie."
+    "nearbyTitle": "Loty od pół godziny wstecz do godziny w przód"
   },
   "sections": {
     "unity": "Unity",

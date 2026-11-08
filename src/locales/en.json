@@ -67,8 +67,7 @@
     "flightsError": "Failed to load flights",
     "flightsSavedAt": "Saved: {{time}}",
     "chartTitle": "Arrivals by half-hour",
-    "nearbyTitle": "Flights from 30 minutes ago to 1 hour ahead",
-    "nearbyEmpty": "No flights in this window."
+    "nearbyTitle": "Flights from 30 minutes ago to 1 hour ahead"
   },
   "sections": {
     "unity": "Unity",
