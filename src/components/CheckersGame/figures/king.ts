@@ -1,12 +1,13 @@
 import { setActive, setCanGo, store } from "../data";
+import type { PieceClickEvent, PieceColor } from "./pieceTypes";
 
-export default function handleKing(e, color) {
+export default function handleKing(e: PieceClickEvent, color: PieceColor) {
   const data = store.getState().gameState;
   const colorAganst = color === 'black' ? 'white' : 'black';
   const cell = e.target.parentElement.id;
   const canGoIds: string[] = [];
 
-  function ifOk(cellId) {
+  function ifOk(cellId: string) {
     if (data[cellId]) {
       if (!data[cellId].figure) {
         canGoIds.push(cellId);

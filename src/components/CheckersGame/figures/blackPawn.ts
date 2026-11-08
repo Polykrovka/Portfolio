@@ -1,12 +1,13 @@
 import { setActive, setCanGo, store } from "../data";
+import type { PieceClickEvent } from "./pieceTypes";
 
-export default function handleBlackPawn(e) {
+export default function handleBlackPawn(e: PieceClickEvent) {
   const data = store.getState().gameState;
   const cell = e.target.parentElement.id;
-  const nextStep = `${cell[0] - 1}${cell[1]}`
-  const doubleStep = `${cell[0] - 2}${cell[1]}`
-  const canFightLeft = `${cell[0] - 1}${cell[1] - 1}`
-  const canFightRight = `${cell[0] - 1}${+cell[1] + 1}`
+  const nextStep = `${+cell[0] - 1}${cell[1]}`
+  const doubleStep = `${+cell[0] - 2}${cell[1]}`
+  const canFightLeft = `${+cell[0] - 1}${+cell[1] - 1}`
+  const canFightRight = `${+cell[0] - 1}${+cell[1] + 1}`
 
   const canGoIds: string[] = [];
 
@@ -18,7 +19,7 @@ export default function handleBlackPawn(e) {
     data[`${doubleStep}`] &&
     !data[`${doubleStep}`].figure &&
     !data[`${nextStep}`]?.figure &&
-    cell[0] == 7
+    +cell[0] == 7
   ) {
     canGoIds.push(doubleStep);
   }

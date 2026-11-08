@@ -10,6 +10,7 @@ import handleOfficer from '../figures/officer';
 import handleKing from '../figures/king';
 import handleHorse from '../figures/horse';
 import { clearActive, movePiece, removeCanGo, setIsWhiteTurn, store, type RootState } from '../data';
+import type { PieceClickEvent } from '../figures/pieceTypes';
 
 type FieldProps = {
   localColor?: 'white' | 'black' | null;
@@ -22,7 +23,7 @@ export default function Field(props: FieldProps) {
   const gameState = useSelector((state: RootState) => state.gameState);
   const isWhiteTurn = useSelector((state: RootState) => state.isWhiteTurn);
   
-  const [activeElement, setActiveElement] = useState();
+  const [activeElement, setActiveElement] = useState<string | null>(null);
   const cellKeys = Object.keys(gameState);
   const isMyTurn =
     localColor === null ||
@@ -30,11 +31,15 @@ export default function Field(props: FieldProps) {
     (localColor === 'black' && !isWhiteTurn);
 
   
-  function handleClick(e) {
-    const id = e.target.id || e.target.parentElement.id;
+  function handleClick(e: React.MouseEvent<HTMLDivElement>) {
+    const target = e.target as HTMLElement;
+    const id = target.id || target.parentElement?.id;
+    if (!id) {
+      return;
+    }
 
     if (gameState[id] && gameState[id].canGo) {
-      if (!isMyTurn) {
+      if (!isMyTurn || !activeElement) {
         return;
       }
       dispatch(movePiece({ from: activeElement, to: id }))
@@ -57,45 +62,46 @@ export default function Field(props: FieldProps) {
       dispatch(removeCanGo())
     }
     
+    const pieceEvent = { target } as PieceClickEvent;
     if (isWhiteTurn) {
-      if (e.target.className.includes('figure_whitePawn')) {
-        handleWhitePawn(e)
+      if (target.className.includes('figure_whitePawn')) {
+        handleWhitePawn(pieceEvent)
         setActiveElement(id);
-      } else if (e.target.className.includes('figure_whiteQueen')) {
-        handleQueen(e, 'white')
+      } else if (target.className.includes('figure_whiteQueen')) {
+        handleQueen(pieceEvent, 'white')
         setActiveElement(id);
-      } else if (e.target.className.includes('figure_whiteCastle')) {
-        handleCastle(e, 'white')
+      } else if (target.className.includes('figure_whiteCastle')) {
+        handleCastle(pieceEvent, 'white')
         setActiveElement(id);
-      } else if (e.target.className.includes('figure_whiteKing')) {
-        handleKing(e, 'white')
+      } else if (target.className.includes('figure_whiteKing')) {
+        handleKing(pieceEvent, 'white')
         setActiveElement(id);
-      } else if (e.target.className.includes('figure_whiteHorse')) {
-        handleHorse(e, 'white')
+      } else if (target.className.includes('figure_whiteHorse')) {
+        handleHorse(pieceEvent, 'white')
         setActiveElement(id);
       }
-      else if (e.target.className.includes('figure_whiteOfficer')) {
-        handleOfficer(e, 'white')
+      else if (target.className.includes('figure_whiteOfficer')) {
+        handleOfficer(pieceEvent, 'white')
         setActiveElement(id);
       }
     } else {
-      if (e.target.className.includes('figure_blackPawn')) {
-        handleBlackPawn(e)
+      if (target.className.includes('figure_blackPawn')) {
+        handleBlackPawn(pieceEvent)
         setActiveElement(id);
-      } else if (e.target.className.includes('figure_blackQueen')) {
-        handleQueen(e, 'black')
+      } else if (target.className.includes('figure_blackQueen')) {
+        handleQueen(pieceEvent, 'black')
         setActiveElement(id);
-      } else if (e.target.className.includes('figure_blackCastle')) {
-        handleCastle(e, 'black')
+      } else if (target.className.includes('figure_blackCastle')) {
+        handleCastle(pieceEvent, 'black')
         setActiveElement(id);
-      } else if (e.target.className.includes('figure_blackOfficer')) {
-        handleOfficer(e, 'black')
+      } else if (target.className.includes('figure_blackOfficer')) {
+        handleOfficer(pieceEvent, 'black')
         setActiveElement(id);
-      } else if (e.target.className.includes('figure_blackKing')) {
-        handleKing(e, 'black')
+      } else if (target.className.includes('figure_blackKing')) {
+        handleKing(pieceEvent, 'black')
         setActiveElement(id);
-      } else if (e.target.className.includes('figure_blackHorse')) {
-        handleHorse(e, 'black')
+      } else if (target.className.includes('figure_blackHorse')) {
+        handleHorse(pieceEvent, 'black')
         setActiveElement(id);
       } 
     }
