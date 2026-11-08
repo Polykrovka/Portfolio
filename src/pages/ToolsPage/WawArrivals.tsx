@@ -16,21 +16,74 @@ import styles from './WawArrivals.module.css';
 const FLIGHTS_API =
   import.meta.env.VITE_FLIGHTS_API_URL ?? 'https://damp-thunder-c7d5.2595092.workers.dev/';
 
+const STORAGE_KEY = 'waw-arrivals-analysis';
+
 type Analysis = {
   buckets: ChartBucket[];
   nearby: AnalyzedFlight[];
+  savedAt: Date;
 };
 
+type StoredAnalysis = {
+  savedAt: string;
+  buckets: { start: string; label: string; count: number }[];
+  nearby: { at: string; timeLabel: string; flight: string; from: string }[];
+};
+
+function loadStoredAnalysis(): Analysis | null {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return null;
+    const data = JSON.parse(raw) as StoredAnalysis;
+    if (!data?.savedAt || !Array.isArray(data.buckets) || !Array.isArray(data.nearby)) {
+      return null;
+    }
+    return {
+      savedAt: new Date(data.savedAt),
+      buckets: data.buckets.map((bucket) => ({
+        start: new Date(bucket.start),
+        label: bucket.label,
+        count: bucket.count,
+      })),
+      nearby: data.nearby.map((flight) => ({
+        at: new Date(flight.at),
+        timeLabel: flight.timeLabel,
+        flight: flight.flight,
+        from: flight.from,
+      })),
+    };
+  } catch {
+    return null;
+  }
+}
+
+function saveAnalysis(analysis: Analysis): void {
+  const payload: StoredAnalysis = {
+    savedAt: analysis.savedAt.toISOString(),
+    buckets: analysis.buckets.map((bucket) => ({
+      start: bucket.start.toISOString(),
+      label: bucket.label,
+      count: bucket.count,
+    })),
+    nearby: analysis.nearby.map((flight) => ({
+      at: flight.at.toISOString(),
+      timeLabel: flight.timeLabel,
+      flight: flight.flight,
+      from: flight.from,
+    })),
+  };
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
+}
+
 export function WawArrivals() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [analysis, setAnalysis] = useState<Analysis | null>(null);
+  const [analysis, setAnalysis] = useState<Analysis | null>(() => loadStoredAnalysis());
 
   const load = async () => {
     setLoading(true);
     setError(null);
-    setAnalysis(null);
 
     try {
       const res = await fetch(FLIGHTS_API);
@@ -46,12 +99,14 @@ export function WawArrivals() {
 
       const flights = withoutCodeshares(list as FlightRow[]);
       const now = new Date();
-      setAnalysis({
+      const next: Analysis = {
         buckets: buildHalfHourChart(flights, now),
         nearby: flightsAroundNow(flights, now),
-      });
+        savedAt: now,
+      };
+      saveAnalysis(next);
+      setAnalysis(next);
     } catch (err) {
-      setAnalysis(null);
       setError(err instanceof Error ? err.message : t('tools.flightsError'));
     } finally {
       setLoading(false);
@@ -71,15 +126,17 @@ export function WawArrivals() {
       <Text className={homeClasses.text}>{t('tools.airportWhy')}</Text>
       <Text className={homeClasses.text}>{t('tools.airportHow')}</Text>
 
-      <Button
-        className={actionButtonClasses.actionButton}
-        onClick={() => void load()}
-        disabled={loading}
-        mt="md"
-        mb="md"
-      >
-        {loading ? t('tools.flightsLoading') : t('tools.flightsFetch')}
-      </Button>
+      {!analysis && (
+        <Button
+          className={actionButtonClasses.actionButton}
+          onClick={() => void load()}
+          disabled={loading}
+          mt="md"
+          mb="md"
+        >
+          {loading ? t('tools.flightsLoading') : t('tools.flightsFetch')}
+        </Button>
+      )}
 
       {error && (
         <Text className={homeClasses.text} c="red">
@@ -89,9 +146,31 @@ export function WawArrivals() {
 
       {analysis && (
         <>
-          <Title order={3} className={homeClasses.subtitle}>
-            {t('tools.chartTitle')}
-          </Title>
+          <div className={styles.chartHeader}>
+            <Title order={3} className={homeClasses.subtitle}>
+              {t('tools.chartTitle')}
+            </Title>
+            <div className={styles.chartHeaderActions}>
+              <Text className={`${homeClasses.text} ${styles.savedAt}`}>
+                {t('tools.flightsSavedAt', {
+                  time: analysis.savedAt.toLocaleString(i18n.language, {
+                    day: '2-digit',
+                    month: '2-digit',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    hour12: false,
+                  }),
+                })}
+              </Text>
+              <Button
+                className={actionButtonClasses.actionButton}
+                onClick={() => void load()}
+                disabled={loading}
+              >
+                {loading ? t('tools.flightsLoading') : t('tools.flightsRefresh')}
+              </Button>
+            </div>
+          </div>
           <div className={styles.chart}>
             {analysis.buckets.map((bucket) => (
               <div key={bucket.start.toISOString()} className={styles.barWrap}>

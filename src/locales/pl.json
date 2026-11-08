@@ -62,8 +62,10 @@
     "airportWhy": "Dlatego zrobiłem to narzędzie: pobiera dane o przylatujących lotach, żeby ocenić, czy warto teraz jechać na postój.",
     "airportHow": "Rozkład biorę z zewnętrznego API. Żeby nie wystawiać dostępu w przeglądarce, zapytanie idzie przez Cloudflare Worker: strona dostaje tylko dane, a ja je dalej rozbieram i pokazuję wniosek.",
     "flightsFetch": "Pobierz loty",
+    "flightsRefresh": "Odśwież",
     "flightsLoading": "Ładowanie…",
     "flightsError": "Nie udało się wczytać lotów",
+    "flightsSavedAt": "Zapisano: {{time}}",
     "chartTitle": "Przyloty co pół godziny",
     "nearbyTitle": "Loty od pół godziny wstecz do godziny w przód",
     "nearbyEmpty": "Brak lotów w tym oknie."

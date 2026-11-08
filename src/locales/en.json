@@ -62,8 +62,10 @@
     "airportWhy": "So I built this tool: it pulls arriving-flight data to help decide whether the stand is worth the trip right now.",
     "airportHow": "Schedules come from an external API. To keep credentials out of the browser, the request goes through a Cloudflare Worker: the site only gets the data, then I parse it and show the conclusion.",
     "flightsFetch": "Get flights",
+    "flightsRefresh": "Refresh",
     "flightsLoading": "Loading…",
     "flightsError": "Failed to load flights",
+    "flightsSavedAt": "Saved: {{time}}",
     "chartTitle": "Arrivals by half-hour",
     "nearbyTitle": "Flights from 30 minutes ago to 1 hour ahead",
     "nearbyEmpty": "No flights in this window."
