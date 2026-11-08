@@ -2,6 +2,7 @@ import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom'
 import { CvPage } from './pages/CvPage/Cv.page';
 import { HomePage } from './pages/HomePage/Home.page';
 import { PersonalPage } from './pages/PersonalPage/Personal.page';
+import { ToolsPage } from './pages/ToolsPage/Tools.page';
 
 
 const NotFoundRedirect = () => <Navigate to="/" replace />;
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
   {
     path: '/personal',
     element: <PersonalPage />,
+  },
+  {
+    path: '/tools',
+    element: <ToolsPage />,
   },
  
   // {

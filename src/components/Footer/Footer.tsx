@@ -36,10 +36,9 @@ export function Footer() {
       links: [
         { label: t('header.mainPage'), link: '/', isRoute: true },
         { label: t('header.cv'), link: '/cv', isRoute: true },
-        { label: t('header.frontend'), link: '/front', isRoute: true },
-        { label: t('header.gameDev'), link: '/game-dev', isRoute: true },
         { label: t('header.contact'), link: '/contact', isRoute: true },
         { label: t('header.personalInfo'), link: '/personal', isRoute: true },
+        { label: t('header.tools'), link: '/tools', isRoute: true },
       ],
     },
   ];

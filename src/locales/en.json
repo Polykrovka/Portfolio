@@ -7,7 +7,8 @@
     "frontend": "Frontend",
     "gameDev": "Game Dev",
     "contact": "Contact",
-    "personalInfo": "Personal info"
+    "personalInfo": "Personal info",
+    "tools": "Tools"
   },
   "footer": {
     "navigation": "Navigation",
@@ -52,6 +53,9 @@
   },
   "personal": {
     "title": "Yeah, it's me!"
+  },
+  "tools": {
+    "title": "Tools"
   },
   "sections": {
     "unity": "Unity",

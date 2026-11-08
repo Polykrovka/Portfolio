@@ -7,7 +7,8 @@
     "frontend": "Frontend",
     "gameDev": "Game Dev",
     "contact": "Контакти",
-    "personalInfo": "Персональна інформація"
+    "personalInfo": "Персональна інформація",
+    "tools": "Tools"
   },
   "footer": {
     "navigation": "Навігація",
@@ -52,6 +53,9 @@
   },
   "personal": {
     "title": "Yeah, it's me!"
+  },
+  "tools": {
+    "title": "Tools"
   },
   "sections": {
     "unity": "Unity",

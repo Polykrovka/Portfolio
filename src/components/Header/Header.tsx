@@ -18,10 +18,9 @@ export function Header() {
   const mainLinks = [
     { link: '/', labelKey: 'header.mainPage' },
     { link: '/cv', labelKey: 'header.cv' },
-    { link: '/front', labelKey: 'header.frontend' },
-    { link: '/game-dev', labelKey: 'header.gameDev' },
     { link: '/contact', labelKey: 'header.contact' },
     { link: '/personal', labelKey: 'header.personalInfo' },
+    { link: '/tools', labelKey: 'header.tools' },
   ];
 
   const isActive = (link: string) => {
@@ -31,17 +30,14 @@ export function Header() {
     if (link.startsWith('/cv')) {
       return location.pathname.startsWith('/cv');
     }
-    if (link.startsWith('/front')) {
-      return location.pathname.startsWith('/front');
-    }
-    if (link.startsWith('/game-dev')) {
-      return location.pathname.startsWith('/game-dev');
-    }
     if (link.startsWith('/contact')) {
       return location.pathname.startsWith('/contact');
     }
     if (link.startsWith('/personal')) {
       return location.pathname.startsWith('/personal');
+    }
+    if (link.startsWith('/tools')) {
+      return location.pathname.startsWith('/tools');
     }
     return false;
   };
