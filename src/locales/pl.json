@@ -55,7 +55,16 @@
     "title": "Yeah, it's me!"
   },
   "tools": {
-    "title": "Tools"
+    "title": "Tools",
+    "intro": "Na tej stronie są narzędzia, z których sam korzystam. To nie sekcje portfolio, tylko praktyczne rozwiązania — pokazują, jak stosuję umiejętności w realnych zadaniach.",
+    "airportTitle": "Analizator przylotów WAW",
+    "airportIntro": "Póki bez pracy w IT jeżdżę taksówką. Najbardziej opłacalne zlecenia są na lotnisku. Ale jeśli stoi już długa kolejka aut, nie ma sensu jechać — popyt jest zajęty.",
+    "airportWhy": "Dlatego zrobiłem to narzędzie: pobiera dane o przylatujących lotach, żeby ocenić, czy warto teraz jechać na postój.",
+    "airportHow": "Rozkład biorę z zewnętrznego API. Żeby nie wystawiać dostępu w przeglądarce, zapytanie idzie przez Cloudflare Worker: strona dostaje tylko dane, a ja je dalej rozbieram i pokazuję wniosek.",
+    "flightsFetch": "Pobierz loty",
+    "flightsLoading": "Ładowanie…",
+    "flightsError": "Nie udało się wczytać lotów",
+    "flightsLoaded": "Pobrano lotów: {{count}}. Przetwarzanie — później."
   },
   "sections": {
     "unity": "Unity",

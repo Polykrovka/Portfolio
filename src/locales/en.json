@@ -55,7 +55,16 @@
     "title": "Yeah, it's me!"
   },
   "tools": {
-    "title": "Tools"
+    "title": "Tools",
+    "intro": "This page holds tools I use myself. They are not portfolio sections — they are practical solutions that show how I apply skills to real problems.",
+    "airportTitle": "WAW arrivals analyzer",
+    "airportIntro": "While looking for IT work I drive a taxi. The best-paying jobs are at the airport. But if a long line of waiting cars is already there, there is no point going — demand is already covered.",
+    "airportWhy": "So I built this tool: it pulls arriving-flight data to help decide whether the stand is worth the trip right now.",
+    "airportHow": "Schedules come from an external API. To keep credentials out of the browser, the request goes through a Cloudflare Worker: the site only gets the data, then I parse it and show the conclusion.",
+    "flightsFetch": "Get flights",
+    "flightsLoading": "Loading…",
+    "flightsError": "Failed to load flights",
+    "flightsLoaded": "Got {{count}} flights. Processing — later."
   },
   "sections": {
     "unity": "Unity",
