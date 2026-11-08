@@ -25,6 +25,7 @@ const router = createBrowserRouter([
   //   element: <NotFoundRedirect />,
   // },
 ], {
+  basename: import.meta.env.BASE_URL,
 });
 
 export function Router() {
