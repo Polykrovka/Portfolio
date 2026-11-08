@@ -64,7 +64,9 @@
     "flightsFetch": "Pobierz loty",
     "flightsLoading": "Ładowanie…",
     "flightsError": "Nie udało się wczytać lotów",
-    "flightsLoaded": "Pobrano lotów: {{count}}. Przetwarzanie — później."
+    "chartTitle": "Przyloty co pół godziny",
+    "nearbyTitle": "Loty od pół godziny wstecz do godziny w przód",
+    "nearbyEmpty": "Brak lotów w tym oknie."
   },
   "sections": {
     "unity": "Unity",

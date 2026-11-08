@@ -1,0 +1,64 @@
+.chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  min-height: 160px;
+  margin: 24px 0 8px;
+  padding: 12px 4px 0;
+  overflow-x: auto;
+}
+
+.barWrap {
+  flex: 1 0 36px;
+  min-width: 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.bar {
+  width: 100%;
+  max-width: 28px;
+  min-height: 2px;
+  border-radius: 4px 4px 0 0;
+  background: light-dark(#5ba3d9, #60a5fa);
+}
+
+.barLabel {
+  font-family: 'Inter', sans-serif;
+  font-size: rem(11px);
+  line-height: 1.2;
+  text-align: center;
+  color: light-dark(#0f172a, var(--mantine-color-white));
+  white-space: nowrap;
+}
+
+.barCount {
+  font-family: 'Inter', sans-serif;
+  font-size: rem(11px);
+  font-weight: 600;
+  color: light-dark(#0f172a, var(--mantine-color-white));
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.listItem {
+  display: grid;
+  grid-template-columns: 64px 1fr 72px;
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid light-dark(#e5e7eb, var(--mantine-color-dark-4));
+  font-family: 'Inter', sans-serif;
+  font-size: rem(16px);
+  line-height: 1.5;
+}
+
+.listTime {
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}

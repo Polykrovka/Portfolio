@@ -64,7 +64,9 @@
     "flightsFetch": "Отримати рейси",
     "flightsLoading": "Завантаження…",
     "flightsError": "Не вдалося завантажити рейси",
-    "flightsLoaded": "Отримано рейсів: {{count}}. Обробка — пізніше."
+    "chartTitle": "Прильоти по півгодини",
+    "nearbyTitle": "Рейси за півгодини до і годину після зараз",
+    "nearbyEmpty": "У цьому вікні рейсів немає."
   },
   "sections": {
     "unity": "Unity",

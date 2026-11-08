@@ -64,7 +64,9 @@
     "flightsFetch": "Атрымаць рэйсы",
     "flightsLoading": "Загрузка…",
     "flightsError": "Не ўдалося загрузіць рэйсы",
-    "flightsLoaded": "Атрымана рэйсаў: {{count}}. Апрацоўка — пазней."
+    "chartTitle": "Прылёты па паўгадзіне",
+    "nearbyTitle": "Рэйсы за паўгадзіны да і гадзіну пасля зараз",
+    "nearbyEmpty": "У гэтым акне рэйсаў няма."
   },
   "sections": {
     "unity": "Unity",

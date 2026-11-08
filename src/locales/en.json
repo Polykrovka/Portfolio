@@ -64,7 +64,9 @@
     "flightsFetch": "Get flights",
     "flightsLoading": "Loading…",
     "flightsError": "Failed to load flights",
-    "flightsLoaded": "Got {{count}} flights. Processing — later."
+    "chartTitle": "Arrivals by half-hour",
+    "nearbyTitle": "Flights from 30 minutes ago to 1 hour ahead",
+    "nearbyEmpty": "No flights in this window."
   },
   "sections": {
     "unity": "Unity",
