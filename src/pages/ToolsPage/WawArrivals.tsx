@@ -17,6 +17,7 @@ const FLIGHTS_API =
   import.meta.env.VITE_FLIGHTS_API_URL ?? 'https://damp-thunder-c7d5.2595092.workers.dev/';
 
 const STORAGE_KEY = 'waw-arrivals-analysis';
+const REFRESH_COOLDOWN_MS = 10 * 60 * 1000;
 
 type Analysis = {
   buckets: ChartBucket[];
@@ -82,6 +83,10 @@ export function WawArrivals() {
   const [analysis, setAnalysis] = useState<Analysis | null>(() => loadStoredAnalysis());
 
   const load = async () => {
+    if (analysis && Date.now() - analysis.savedAt.getTime() < REFRESH_COOLDOWN_MS) {
+      return;
+    }
+
     setLoading(true);
     setError(null);
 
