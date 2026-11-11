@@ -20,6 +20,7 @@ const AERODATABOX_API =
   'https://waw-aerodatabox.2595092.workers.dev/';
 
 const STORAGE_KEY = 'waw-arrivals-analysis';
+const AERODATABOX_STORAGE_KEY = 'waw-arrivals-aerodatabox';
 const REFRESH_COOLDOWN_MS = 10 * 60 * 1000;
 
 type Analysis = {
@@ -34,9 +35,9 @@ type StoredAnalysis = {
   nearby: { at: string; timeLabel: string; flight: string; from: string }[];
 };
 
-function loadStoredAnalysis(): Analysis | null {
+function loadStoredAnalysis(key: string): Analysis | null {
   try {
-    const raw = localStorage.getItem(STORAGE_KEY);
+    const raw = localStorage.getItem(key);
     if (!raw) return null;
     const data = JSON.parse(raw) as StoredAnalysis;
     if (!data?.savedAt || !Array.isArray(data.buckets) || !Array.isArray(data.nearby)) {
@@ -61,7 +62,7 @@ function loadStoredAnalysis(): Analysis | null {
   }
 }
 
-function saveAnalysis(analysis: Analysis): void {
+function saveAnalysis(key: string, analysis: Analysis): void {
   const payload: StoredAnalysis = {
     savedAt: analysis.savedAt.toISOString(),
     buckets: analysis.buckets.map((bucket) => ({
@@ -76,7 +77,7 @@ function saveAnalysis(analysis: Analysis): void {
       from: flight.from,
     })),
   };
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
+  localStorage.setItem(key, JSON.stringify(payload));
 }
 
 function convertAeroDataBoxJsonToFlights(data: unknown): FlightRow[] {
@@ -216,7 +217,15 @@ export function WawArrivals() {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [analysis, setAnalysis] = useState<Analysis | null>(() => loadStoredAnalysis());
+  const [analysis, setAnalysis] = useState<Analysis | null>(() =>
+    loadStoredAnalysis(STORAGE_KEY),
+  );
+
+  const [aeroLoading, setAeroLoading] = useState(false);
+  const [aeroError, setAeroError] = useState<string | null>(null);
+  const [aeroAnalysis, setAeroAnalysis] = useState<Analysis | null>(() =>
+    loadStoredAnalysis(AERODATABOX_STORAGE_KEY),
+  );
 
   const load = async () => {
     if (analysis && Date.now() - analysis.savedAt.getTime() < REFRESH_COOLDOWN_MS) {
@@ -245,12 +254,42 @@ export function WawArrivals() {
         nearby: flightsAroundNow(flights, now),
         savedAt: now,
       };
-      saveAnalysis(next);
+      saveAnalysis(STORAGE_KEY, next);
       setAnalysis(next);
     } catch (err) {
       setError(err instanceof Error ? err.message : t('tools.flightsError'));
     } finally {
       setLoading(false);
+    }
+  };
+
+  const loadAero = async () => {
+    if (aeroAnalysis && Date.now() - aeroAnalysis.savedAt.getTime() < REFRESH_COOLDOWN_MS) {
+      return;
+    }
+
+    setAeroLoading(true);
+    setAeroError(null);
+
+    try {
+      const res = await fetch(AERODATABOX_API);
+      if (!res.ok) {
+        throw new Error(`HTTP ${res.status}`);
+      }
+
+      const flights = convertAeroDataBoxJsonToFlights(await res.json());
+      const now = new Date();
+      const next: Analysis = {
+        buckets: buildHalfHourChart(flights, now),
+        nearby: flightsAroundNow(flights, now),
+        savedAt: now,
+      };
+      saveAnalysis(AERODATABOX_STORAGE_KEY, next);
+      setAeroAnalysis(next);
+    } catch (err) {
+      setAeroError(err instanceof Error ? err.message : t('tools.flightsError'));
+    } finally {
+      setAeroLoading(false);
     }
   };
 
@@ -265,10 +304,10 @@ export function WawArrivals() {
 
       <ArrivalsBoard
         title="AeroDataBox"
-        analysis={analysis}
-        loading={loading}
-        error={error}
-        onLoad={load}
+        analysis={aeroAnalysis}
+        loading={aeroLoading}
+        error={aeroError}
+        onLoad={loadAero}
       />
 
       <ArrivalsBoard
