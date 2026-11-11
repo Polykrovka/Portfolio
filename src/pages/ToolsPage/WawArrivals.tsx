@@ -15,6 +15,9 @@ import styles from './WawArrivals.module.css';
 
 const FLIGHTS_API =
   import.meta.env.VITE_FLIGHTS_API_URL ?? 'https://damp-thunder-c7d5.2595092.workers.dev/';
+const AERODATABOX_API =
+  import.meta.env.VITE_FLIGHTS_AERODATABOX_URL ??
+  'https://waw-aerodatabox.2595092.workers.dev/';
 
 const STORAGE_KEY = 'waw-arrivals-analysis';
 const REFRESH_COOLDOWN_MS = 10 * 60 * 1000;
@@ -74,6 +77,36 @@ function saveAnalysis(analysis: Analysis): void {
     })),
   };
   localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
+}
+
+function convertAeroDataBoxJsonToFlights(data: unknown): FlightRow[] {
+  const arrivals = (data as { arrivals?: unknown })?.arrivals;
+  if (!Array.isArray(arrivals)) return [];
+  return arrivals.map((row) => {
+    const f = row as {
+      number?: string;
+      status?: string;
+      departure?: { airport?: { iata?: string } };
+      arrival?: {
+        scheduledTime?: { local?: string; utc?: string };
+        revisedTime?: { local?: string; utc?: string };
+        runwayTime?: { local?: string; utc?: string };
+      };
+    };
+    const a = f.arrival;
+    return {
+      flight_iata: String(f.number ?? '').replace(/\s+/g, ''),
+      dep_iata: f.departure?.airport?.iata,
+      arr_time: a?.scheduledTime?.local ?? a?.scheduledTime?.utc,
+      arr_estimated:
+        a?.revisedTime?.local ??
+        a?.revisedTime?.utc ??
+        a?.runwayTime?.local ??
+        a?.runwayTime?.utc,
+      status: f.status,
+      cs_flight_iata: null,
+    };
+  });
 }
 
 type ArrivalsBoardProps = {
