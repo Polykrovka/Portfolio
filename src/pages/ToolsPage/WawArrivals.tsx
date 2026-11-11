@@ -23,6 +23,7 @@ const AERODATABOX_API =
 const STORAGE_KEY = 'waw-arrivals-analysis';
 const AERODATABOX_STORAGE_KEY = 'waw-arrivals-aerodatabox';
 const REFRESH_COOLDOWN_MS = 10 * 60 * 1000;
+const STORAGE_MAX_AGE_MS = 12 * 60 * 60 * 1000;
 
 type Analysis = {
   buckets: ChartBucket[];
@@ -42,10 +43,16 @@ function loadStoredAnalysis(key: string): Analysis | null {
     if (!raw) return null;
     const data = JSON.parse(raw) as StoredAnalysis;
     if (!data?.savedAt || !Array.isArray(data.buckets) || !Array.isArray(data.nearby)) {
+      localStorage.removeItem(key);
+      return null;
+    }
+    const savedAt = new Date(data.savedAt);
+    if (Number.isNaN(savedAt.getTime()) || Date.now() - savedAt.getTime() > STORAGE_MAX_AGE_MS) {
+      localStorage.removeItem(key);
       return null;
     }
     return {
-      savedAt: new Date(data.savedAt),
+      savedAt,
       buckets: data.buckets.map((bucket) => ({
         start: new Date(bucket.start),
         label: bucket.label,
@@ -59,6 +66,7 @@ function loadStoredAnalysis(key: string): Analysis | null {
       })),
     };
   } catch {
+    localStorage.removeItem(key);
     return null;
   }
 }
