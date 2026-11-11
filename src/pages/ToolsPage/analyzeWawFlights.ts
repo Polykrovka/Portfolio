@@ -63,14 +63,12 @@ export function buildHalfHourChart(flights: FlightRow[], now = new Date()): Char
     .filter((at): at is Date => at !== null)
     .sort((a, b) => a.getTime() - b.getTime());
 
-  if (!times.length) {
-    return [];
-  }
-
   const rangeStart = floorToHalfHour(
-    new Date(Math.min(times[0].getTime(), now.getTime() - HOUR_MS)),
+    times.length
+      ? new Date(Math.min(times[0].getTime(), now.getTime() - HOUR_MS))
+      : new Date(now.getTime() - HOUR_MS),
   );
-  const lastFlight = times[times.length - 1].getTime();
+  const lastFlight = times.length ? times[times.length - 1].getTime() : now.getTime();
   const rangeEnd = new Date(
     Math.max(lastFlight + HALF_HOUR_MS, now.getTime() + CHART_FORWARD_MS),
   );

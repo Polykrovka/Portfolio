@@ -1,10 +1,15 @@
+.panelTitle {
+  margin-top: 32px;
+  color: light-dark(#0f172a, #ffffff);
+}
+
 .chartHeader {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
   flex-wrap: wrap;
-  margin-top: 32px;
+  margin-top: 16px;
 }
 
 .chartHeaderActions {
