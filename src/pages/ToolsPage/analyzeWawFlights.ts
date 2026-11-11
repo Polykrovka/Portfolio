@@ -12,6 +12,18 @@ export function withoutCodeshares(flights: FlightRow[]): FlightRow[] {
   return flights.filter((flight) => !flight.cs_flight_iata);
 }
 
+/** One row per flight number. */
+export function withoutDuplicateFlights(flights: FlightRow[]): FlightRow[] {
+  const seen = new Set<string>();
+  return flights.filter((flight) => {
+    const key = flight.flight_iata ?? '';
+    if (!key) return true;
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+}
+
 export type ChartBucket = {
   start: Date;
   label: string;

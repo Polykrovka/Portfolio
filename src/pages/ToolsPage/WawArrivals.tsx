@@ -7,6 +7,7 @@ import {
   buildHalfHourChart,
   flightsAroundNow,
   withoutCodeshares,
+  withoutDuplicateFlights,
   type ChartBucket,
   type AnalyzedFlight,
   type FlightRow,
@@ -234,7 +235,7 @@ export function WawArrivals() {
         throw new Error('Unexpected response');
       }
 
-      const flights = withoutCodeshares(list as FlightRow[]);
+      const flights = withoutDuplicateFlights(withoutCodeshares(list as FlightRow[]));
       const now = new Date();
       const next: Analysis = {
         buckets: buildHalfHourChart(flights, now),
@@ -264,7 +265,9 @@ export function WawArrivals() {
         throw new Error(`HTTP ${res.status}`);
       }
 
-      const flights = convertAeroDataBoxJsonToFlights(await res.json());
+      const flights = withoutDuplicateFlights(
+        convertAeroDataBoxJsonToFlights(await res.json()),
+      );
       const now = new Date();
       const next: Analysis = {
         buckets: buildHalfHourChart(flights, now),
